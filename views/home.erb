@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+	<div class="post">
+		<h2 class="title"><%= post.title%></h2>
+		<p class="content"><%= post.text%></p>
+		<a href="/post/<%= post.id %>">...........</a>
+	</div>	
+<% end %>

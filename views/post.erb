@@ -1,0 +1,19 @@
+<div class="post">
+	<h2 class="title"><%= @post.title%></h2>
+	<p class="content"><%= @post.text%></p>
+</div>
+
+
+<%if @comments.size !=0%> 
+	<% @comments.each do |cooment| %>
+		<p><%= cooment.text %></p>
+	<% end %>	
+<% end %>
+
+<form id="commentform" method="post" action="/new_comment">
+	<p>Comment</p>
+	<input type="text" name="text">
+	<p>
+	<input type="hidden" name="post_id" value="<%= @post.id %>">	
+	<input  type="submit" value="Send comment" name="submit">
+</form>
