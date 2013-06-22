@@ -44,7 +44,7 @@ a:hover{
 	margin: 8px;
 }
 #sign_in_button:hover #login_form{
-	transition-delay:1s;
+	transition-delay: 1s;
 	visibility: visible;
 }
 #login_form{
@@ -74,9 +74,7 @@ a:hover{
 
 .banner_image{
 	background: url("../images/banner1.jpg") repeat scroll 0 0 / cover  transparent;
-	position: fixed;
-	top: 100px;
-	width: 100%;
+	background-size: cover;
 	height: 300px;
 }
 .post{
@@ -95,8 +93,56 @@ h2{
     padding: 0 0 10px 0;
     border-bottom: 1px solid rgba(255,255,255,0.4);
 }
-.posts{
-	position: absolute;
-	top: 400px;
+.new_user_form{
+	width: 600px; /* Ширина слоя */
+	height: 400px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+.new_user_form p{
+	width: 400px;
+	margin: 10px;
+	margin-left: 80px;
+	float: left;
+	padding: 5px;
+	font-size: 1.4em;
+}
+
+.new_user_form input{
+	background: #ffffff;
+    border: 1px solid #ddd;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px;
+    width: 250px;
+    font-size: 1.4em;
+    float:left;
+}
+label{
+	padding: 10px;
+	float: left;
+	width: 100px;
+	text-align:right;
+	margin-right: 10px;
+}
+
+#panel{
 	width: 100%;
+	height: 100px;
+	margin: 0;
+	padding: 0;
+	background-color: #a4c424;
+    border-radius: 0 0 10px 10px;
+}
+#panel input{
+	margin-top: 20px;
+	margin-left: 180px;
+	border: none;
+	color: #fff;
+	padding: 10px;
+	background-color: #3594cb;	
 }

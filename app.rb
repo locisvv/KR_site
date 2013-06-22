@@ -77,7 +77,7 @@ end
 post '/new_user' do
 	if params[:login].empty? or params[:name].empty? or params[:password].empty?
 		session[:error] = "Empty=)"
-		redirect to('/sing_up')
+		redirect to('/sign_up')
 	end	
 	
 	user = User.first(:login => params[:login])
@@ -111,25 +111,15 @@ get '/all_user' do
 	erb :all_user
 end
 
-before '/new_post' do
-	if session[:user] == nil
-		session[:error] = 'Authenticate!'
-		redirect to('/')
-	end
-end	
-
 get '/new_post' do
+	login?
+
 	erb :new_post
 end
 
-before '/save_post' do
-	if session[:user] == nil
-		session[:error] = 'Authenticate!'
-		redirect to('/')
-	end
-end
-
 post '/save_post' do
+	login?
+
 	if params[:title].empty? or params[:text].empty?
 		params[:error] = 'Empty content'
 		redirect to('/new_post')
@@ -153,6 +143,8 @@ get '/post/:id' do
 end
 
 post '/new_comment' do
+	login?("post/#{ params[:post_id] }")
+
 	if params[:text].empty?
 		session[:error] = 'Empty comment'
 		redirect back
@@ -164,4 +156,11 @@ post '/new_comment' do
 	comment.save
 
 	redirect back
-end	
+end
+
+def login?(route='/')
+	if session[:user] == nil
+		session[:error] = 'Authenticate!'
+		redirect to(route)	
+	end
+end
