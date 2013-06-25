@@ -1,18 +1,20 @@
 <div class="post">
-	<h2 class="title"><%= @post.title%></h2>
-	<p class="content"><%= @post.text%></p>
+	<h2 class="title"><%= @post.title %></h2>
+	<p class="content"><%= @post.subtext %></p>
+	<p class="content"><%= @post.text %></p>
 </div>
 
 
 <%if @comments.size !=0%> 
-	<% @comments.each do |cooment| %>
-		<p><%= cooment.text %></p>
+	<% @comments.each do |comment| %>
+		<p id="comment"><%= comment.text %></p>
+		<p id="comment_date"><%= Time.at(comment.created_at).strftime("%d-%m-%Y %k:%M") %></p>
 	<% end %>	
 <% end %>
 
-<form id="commentform" method="post" action="/new_comment">
+<form class="comment_form" method="post" action="/new_comment">
 	<p>Comment</p>
-	<input type="text" name="text">
+	<textarea type="text" name="text" required></textarea>
 	<p>
 	<input type="hidden" name="post_id" value="<%= @post.id %>">	
 	<input  type="submit" value="Send comment" name="submit">

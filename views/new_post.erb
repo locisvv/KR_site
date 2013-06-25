@@ -1,7 +1,10 @@
-<form  method="post" action="/save_post">
+<form  class="post_form" method="post" action="/save_post">
 	<p>Title</p>
-	<input type="text" name="title">
+	<input type="text" name="title" size="100" required>
+	<p>Subtext</p>
+	<textarea name="subtext" required></textarea>
 	<p>Text</p>
-	<input type="text" name="text">
-	<input  type="submit" value="Send post" name="submit">
+	<textarea name="text" required></textarea>
+	<p>
+	<input  id="send_button" type="submit" value="Send post" name="submit">
 </form>

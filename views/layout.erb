@@ -17,11 +17,11 @@
 	<% if session[:user] == nil %>
 		<div class='button' id="sign_in_button">
 			
-			<a class="link" id="sign_in_link" href="/sign_in">S</a>
+			<a class="link" id="sign_in_link" href="/login">S</a>
 
 			<form id="login_form" method="post" action="/sign_in">
-				<input type="text" name="login" size="10">
-				<input type="text" name="password" size="10">
+				<input required type="text" name="login" size="10">
+				<input required type="text" name="password" size="10">
 				<input id="login_button" type="submit" value="Sing in" name="submit">
 			</form>
 		</div>

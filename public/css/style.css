@@ -31,6 +31,10 @@ a:hover{
 	position: absolute;
 	right:100px;
 }
+#login_form{
+	margin: 8px;
+	visibility: hidden;
+}
 #sign_in_button:hover{
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
@@ -39,16 +43,9 @@ a:hover{
 	transition: all 1s ease-in-out;
 	width: 300px;
 }
-#login_form{
-	width: 300px;
-	margin: 8px;
-}
 #sign_in_button:hover #login_form{
 	transition-delay: 1s;
 	visibility: visible;
-}
-#login_form{
-	visibility: hidden;
 }
 #login_button{
     text-align: center;
@@ -78,7 +75,7 @@ a:hover{
 	height: 300px;
 }
 .post{
-	margin: 0 5% 15px 25%;
+	margin: 15px 10% 15px 10%;
     background: #3594cb;
     color: #fff;
     padding: 2em;
@@ -88,21 +85,31 @@ a:hover{
     position: relative;
     border-radius: 5px;
 }
-h2{
+.post a{
+	color: #fff;
+}
+.post h2{
 	margin-top: 0px;
     padding: 0 0 10px 0;
     border-bottom: 1px solid rgba(255,255,255,0.4);
 }
-.new_user_form{
+.post h3{
+	float: right;
+}
+.new_user_form, .sign_in_form{
 	width: 600px; /* Ширина слоя */
 	height: 400px;
     margin: 0 auto;
+    margin-top: 50px;
     border: 1px solid #ddd;
     -moz-border-radius: 10px;
     -webkit-border-radius: 20px;
     border-radius: 20px;
 }
-.new_user_form p{
+.sign_in_form{
+	height: 250px;
+}
+.new_user_form p, .sign_in_form p{
 	width: 400px;
 	margin: 10px;
 	margin-left: 80px;
@@ -111,7 +118,7 @@ h2{
 	font-size: 1.4em;
 }
 
-.new_user_form input{
+.new_user_form input, .sign_in_form input{
 	background: #ffffff;
     border: 1px solid #ddd;
     -moz-border-radius: 3px;
@@ -137,6 +144,8 @@ label{
 	padding: 0;
 	background-color: #a4c424;
     border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
 }
 #panel input{
 	margin-top: 20px;
@@ -144,5 +153,40 @@ label{
 	border: none;
 	color: #fff;
 	padding: 10px;
-	background-color: #3594cb;	
+	background-color: #1a962b;	
+}
+/*-------- /new_post --------*/
+.post_form{
+	width: 600px;
+	padding: 0 100px;
+	font-size: 1.2em;
+	margin: 0 auto;
+	border: 1px solid #ddd;
+}
+.post_form input{
+	font-size: 1.2em;
+	padding: 5px;
+	width: 600px;
+}
+.post_form textarea{
+	font-size: 1.2em;
+	margin: 0 auto;	
+	font-size: inherit;
+	width: 600px;
+	height: 100px;
+}
+.post_form #send_button, .comment_form input{
+	border: none;
+	color: #fff;
+	padding: 10px;
+	background-color: #1a962b;	
+}
+
+/*-------- /post/:id; --------*/
+.comment_form{
+	margin: 10px 10% 10px 10%;
+}
+.comment_form textarea{
+	width: 500px;
+	height: 100px;
 }

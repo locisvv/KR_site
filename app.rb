@@ -22,8 +22,9 @@ class Post
 
 	property :id,    	  Serial
 	property :title,      String
+	property :subtext,	  Text	
 	property :text,  	  Text
-	property :created_at, DateTime
+	property :created_at, Integer, :default => Time.now.to_i
 
 	belongs_to :user
 	has n, :comment
@@ -34,7 +35,7 @@ class Comment
 
 	property :id,    	  Serial
 	property :text,  	  Text
-	property :created_at, DateTime
+	property :created_at, Integer, :default => Time.now.to_i
 
 	belongs_to :user
 	belongs_to :post
@@ -54,8 +55,12 @@ get '/sign_up' do
 	erb :new_user
 end
 
+
+get '/login' do
+	erb :login
+end	
 post '/sign_in' do
-	if params[:login].empty? and params[:password].empty?
+	if params[:login].empty? or params[:password].empty?
 		session[:error] = "Empty"
 		redirect back
 	end
@@ -66,7 +71,7 @@ post '/sign_in' do
 	else
 		session[:error] = "Incorect password or login"	
 	end 
-	redirect back
+	redirect to('/')
 end
 
 get '/logout' do
@@ -86,6 +91,7 @@ post '/new_user' do
 		user = User.create(
 			:name => params[:name],
 			:login => params[:login],
+			:email => params[:email],
 			:password => params[:password]
 		)
 		user.save	
@@ -120,13 +126,14 @@ end
 post '/save_post' do
 	login?
 
-	if params[:title].empty? or params[:text].empty?
+	if params[:title].empty? or params[:text].empty? or params[:subtext].empty?
 		params[:error] = 'Empty content'
 		redirect to('/new_post')
 	end
 
 	post = Post.create(:title => params[:title], 
-					   :text => params[:text], 
+					   :text => params[:text],
+					   :subtext => params[:subtext], 
 					   :user_id => session[:user].id)
 	post.save
 	redirect to('/')
@@ -158,7 +165,7 @@ post '/new_comment' do
 	redirect back
 end
 
-def login?(route='/')
+def login?(route = '/')
 	if session[:user] == nil
 		session[:error] = 'Authenticate!'
 		redirect to(route)	

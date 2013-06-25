@@ -1,8 +1,9 @@
 <div class="banner_image"></div>
 <% @posts.each do |post| %>
 	<div class="post">
-		<h2 class="title"><%= post.title%></h2>
-		<p class="content"><%= post.text%></p>
-		<a href="/post/<%= post.id %>">...........</a>
+		<h2><%= post.title %></h2>
+		<p><%= post.subtext %></p>
+		<a href="/post/<%= post.id %>">Next...</a>
+		<h3><%= Time.at(post.created_at).strftime("%d-%m-%Y")%></h3>
 	</div>	
 <% end %>
