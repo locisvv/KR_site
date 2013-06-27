@@ -175,7 +175,7 @@ label{
 	width: 600px;
 	height: 100px;
 }
-.post_form #send_button, .comment_form input{
+.post_form #send_button, .comments input{
 	border: none;
 	color: #fff;
 	padding: 10px;
@@ -183,10 +183,53 @@ label{
 }
 
 /*-------- /post/:id; --------*/
-.comment_form{
+.comments{
 	margin: 10px 10% 10px 10%;
 }
-.comment_form textarea{
+.comments textarea{
 	width: 500px;
 	height: 100px;
+}
+.comment_form{
+	margin: 0 0 0 190px;
+}
+.comment{
+	margin: 40px;
+}
+.photo{
+	margin-bottom: 50px;
+	position: absolute;
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+	border: 2px solid #ddd;
+}
+.photo span{
+	position: absolute;
+	bottom: -30px;
+	text-align: center;
+	width: 100%;
+}
+.comment_content{
+	margin-left: 150px;
+	border: 2px solid #ddd;	
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 0px 10px 0 20px;
+}
+/*.comment_date{
+	float: right;
+}*/
+.triangle {
+	margin-top: 30px; 
+	margin-left: 130px;
+	float: left;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-right: 20px solid #ddd;
+    border-bottom: 20px solid transparent;
 }

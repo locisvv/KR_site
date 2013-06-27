@@ -66,7 +66,7 @@ post '/sign_in' do
 	end
 
 	user = User.first(:login => params[:login], :password => params[:password])
-	if user != nil
+	if user
 		session[:user] = user
 	else
 		session[:error] = "Incorect password or login"	
@@ -87,7 +87,10 @@ post '/new_user' do
 	
 	user = User.first(:login => params[:login])
 
-	if user == nil
+	if user
+		session[:error] = "Incorect !!!"
+		redirect to('/sign_up')
+	else
 		user = User.create(
 			:name => params[:name],
 			:login => params[:login],
@@ -96,9 +99,6 @@ post '/new_user' do
 		)
 		user.save	
 		redirect to('/')
-	else
-		session[:error] = "Incorect !!!"
-		redirect to('/sing_up')
 	end
 end
 
@@ -141,10 +141,12 @@ end
 
 get '/post/:id' do
 	@post = Post.first(:id => params[:id])
-	if @post == nil
+
+	unless @post
 		session[:error] = "Empty post"
 		redirect back
 	end
+
 	@comments = Comment.all(:post_id => params[:id])
 	erb :post
 end
@@ -166,7 +168,7 @@ post '/new_comment' do
 end
 
 def login?(route = '/')
-	if session[:user] == nil
+	unless session[:user]
 		session[:error] = 'Authenticate!'
 		redirect to(route)	
 	end

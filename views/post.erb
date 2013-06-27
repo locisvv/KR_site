@@ -4,18 +4,27 @@
 	<p class="content"><%= @post.text %></p>
 </div>
 
+<div class="comments">
+	<%if @comments.size != 0%> 
+		<% @comments.each do |comment| %>
+			<div class="comment">
+				<div class="photo">
+					<span><%= User.get(comment.user_id).name %></span>
+				</div>
+				<div class="triangle"></div>
+				<div class="comment_content">
+					<p class="comment_text"><%= comment.text %></p>
+					<p class="comment_date"><%= Time.at(comment.created_at).strftime("%d-%m-%Y %k:%M") %></p>
+				</div>
+			</div>	
+		<% end %>
+	<% end %>
 
-<%if @comments.size !=0%> 
-	<% @comments.each do |comment| %>
-		<p id="comment"><%= comment.text %></p>
-		<p id="comment_date"><%= Time.at(comment.created_at).strftime("%d-%m-%Y %k:%M") %></p>
-	<% end %>	
-<% end %>
-
-<form class="comment_form" method="post" action="/new_comment">
-	<p>Comment</p>
-	<textarea type="text" name="text" required></textarea>
-	<p>
-	<input type="hidden" name="post_id" value="<%= @post.id %>">	
-	<input  type="submit" value="Send comment" name="submit">
-</form>
+	<form class="comment_form" method="post" action="/new_comment">
+		<p>Comment</p>
+		<textarea type="text" name="text" required></textarea>
+		<p>
+		<input type="hidden" name="post_id" value="<%= @post.id %>">	
+		<input  type="submit" value="Send comment" name="submit">
+	</form>
+</div>
