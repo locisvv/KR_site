@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
-require 'mini_magick'
+# require 'mini_magick'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
 
