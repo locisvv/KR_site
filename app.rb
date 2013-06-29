@@ -4,7 +4,7 @@ require 'sinatra'
 require 'data_mapper' 
 # require 'mini_magick'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class User
   include DataMapper::Resource
