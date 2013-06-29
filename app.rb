@@ -2,8 +2,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
+require 'mini_magick'
 
-DataMapper.setup(:default, "sqlite3:db.sqlite3")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
 
 class User
   include DataMapper::Resource
@@ -40,6 +41,14 @@ class Comment
 	belongs_to :user
 	belongs_to :post
 end
+
+class Photo
+	include DataMapper::Resource
+
+	property :id,    	  Serial
+	property :name,  	  String
+	property :created_at, Integer, :default => Time.now.to_i
+end	
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
@@ -167,9 +176,24 @@ post '/new_comment' do
 	redirect back
 end
 
+get '/upload_photo' do
+	erb :upload_photo
+end
+
+post '/upload_photo' do
+	@filename = params[:img][:filename]
+	file = params[:img][:tempfile]
+
+	File.open("./public/photo/#{@filename}", 'wb') do |f|
+		f.write(file.read)
+	end
+
+end
+
 def login?(route = '/')
 	unless session[:user]
 		session[:error] = 'Authenticate!'
 		redirect to(route)	
 	end
 end
+
