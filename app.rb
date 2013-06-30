@@ -3,9 +3,6 @@ require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
 
-set :environment, ENV['RACK_ENV'] || :development
-                                       #:test
-
 # configure :production do
 #   DataMapper.setup(:default, ENV['DATABASE_URL'])
 # end
