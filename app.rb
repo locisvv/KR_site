@@ -4,13 +4,13 @@ require 'sinatra'
 require 'data_mapper' 
 
 
-# configure :production do
+configure :production do
   DataMapper.setup(:default, ENV['DATABASE_URL'])
-# end
+end
 
-# configure :development do
-  # DataMapper.setup(:default, 'sqlite:db.sqlite3')
-# end
+configure :development do
+  DataMapper.setup(:default, 'sqlite:db.sqlite3')
+end
 
 class User
   include DataMapper::Resource
