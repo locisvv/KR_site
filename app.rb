@@ -11,7 +11,7 @@ require 'data_mapper'
 #   DataMapper.setup(:default, 'sqlite:db.sqlite3')
 # end
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class User
   include DataMapper::Resource
