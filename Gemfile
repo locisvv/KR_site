@@ -1,6 +1,8 @@
 source :rubygems
 gem 'data_mapper'
 gem 'sinatra'
-gem 'dm-postgres-adapter'
-gem 'dm-sqlite-adapter'
-gem 'pg'
+
+group :production do
+  gem 'pg'
+  gem 'dm-postgres-adapter'
+end
