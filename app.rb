@@ -2,9 +2,15 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
-# require 'mini_magick'
+require 'mini_magick'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'])
+# configure :production do
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+# end
+
+# configure :development do
+  # DataMapper.setup(:default, 'sqlite:db.sqlite3')
+# end
 
 class User
   include DataMapper::Resource
