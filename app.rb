@@ -3,14 +3,18 @@ require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
 
+set :environment, ENV['RACK_ENV'] || :development
+                                       #:test
 
-configure :production do
-  DataMapper.setup(:default, ENV['DATABASE_URL'])
-end
+# configure :production do
+#   DataMapper.setup(:default, ENV['DATABASE_URL'])
+# end
 
-configure :development do
-  DataMapper.setup(:default, 'sqlite:db.sqlite3')
-end
+# configure :development do
+#   DataMapper.setup(:default, 'sqlite:db.sqlite3')
+# end
+
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
 
 class User
   include DataMapper::Resource
