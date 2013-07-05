@@ -1,7 +1,13 @@
+body{
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
 nav{
 	padding: 30px;
-	width: 700px; /* Ширина слоя */
+	width: 800px; /* Ширина слоя */
     margin: 0 auto;
+    color: #fff;
 }
 ul{
     padding: 0;
@@ -15,52 +21,27 @@ li {
  	display: inline;
  	padding: 30px;
 }
-a {
+.button{
+	padding: 10px;
+	float: right;
+	top: -280px;
+	position: relative;
+	background-color: #a4c424;
+	margin: 5px;
+}
+.button a {
+	color: #fff;
 	text-decoration: none;
-	color: black;
+	font-size: 1.3em;
+}
+
+.banner_image a {
+	text-decoration: none;
+	color: #fff;
+	font-size: 1.4em;
 }
 a:hover{
 	text-decoration: underline;
-}
-.button{
-	background-color: #3594cb;
-	height: 40px;
-	width: 40px;
-}
-#sign_in_button{
-	position: absolute;
-	right:100px;
-}
-#login_form{
-	margin: 8px;
-	visibility: hidden;
-}
-#sign_in_button:hover{
-	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
-	width: 300px;
-}
-#sign_in_button:hover #login_form{
-	transition-delay: 1s;
-	visibility: visible;
-}
-#login_button{
-    text-align: center;
-    padding: 3px;
-    color: rgb(255, 255, 255);
-    background: none repeat scroll 0% 0% rgb(0, 180, 255);
-    border: medium none;
-}
-#sign_up_button{
-	position: absolute;
-	right:50px;	
-}
-#logout_button{
-	position: absolute;
-	right:100px;
 }
 .link{
 	position: absolute;
@@ -68,11 +49,12 @@ a:hover{
 	right: 10px;
 	padding: 4px;
 }
-
 .banner_image{
 	background: url("../images/banner1.jpg") repeat scroll 0 0 / cover  transparent;
 	background-size: cover;
 	height: 300px;
+	margin: 0px;
+	width: 100%;
 }
 .post{
 	margin: 15px 10% 15px 10%;

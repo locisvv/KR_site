@@ -9,8 +9,14 @@
 		<% @comments.each do |comment| %>
 			<div class="comment">
 				<div class="photo">
+
+					
+						<img src="/photo/Koala.jpg"/>
+					
+
 					<span><%= User.get(comment.user_id).name %></span>
 				</div>
+
 				<div class="triangle"></div>
 				<div class="comment_content">
 					<p class="comment_text"><%= comment.text %></p>

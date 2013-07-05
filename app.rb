@@ -16,13 +16,14 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
 class User
   include DataMapper::Resource
 
-  property :id,       Serial
-  property :name,     String
-  property :email,	  String	
-  property :login,    String
-  property :password, String
+	property :id,         	Serial
+	property :name,       	String
+	property :email,	  	String	
+	property :login,      	String
+	property :password,   	String
+	property :photo_name, 	String
 
-  has n, :posts
+  	has n, :posts
 end
 
 class Post
@@ -67,13 +68,8 @@ get '/' do
   	erb :home
 end
 
-get '/sign_up' do
-	erb :new_user
-end
-
-
-get '/login' do
-	erb :login
+get '/sign_in' do
+	erb :sign_in
 end	
 post '/sign_in' do
 	if params[:login].empty? or params[:password].empty?
@@ -90,12 +86,12 @@ post '/sign_in' do
 	redirect to('/')
 end
 
-get '/logout' do
-	session[:user] = nil
-	redirect to('/')
+get '/sign_up' do
+	erb :sign_up
 end
 
-post '/new_user' do
+post '/sign_up' do
+
 	if params[:login].empty? or params[:name].empty? or params[:password].empty?
 		session[:error] = "Empty=)"
 		redirect to('/sign_up')
@@ -113,10 +109,38 @@ post '/new_user' do
 			:email => params[:email],
 			:password => params[:password]
 		)
-		user.save	
+		user.save
+
+		if params[:img].empty?
+			file = params[:img][:tempfile]
+			File.open("./public/photo/{user.id}", 'wb') do |f|
+				f.write(file.read)
+			end
+			user.photo_name = user.id
+			user.save
+		end
+
 		redirect to('/')
 	end
 end
+
+get '/logout' do
+	session[:user] = nil
+	redirect to('/')
+end
+
+get '/my_page' do
+	login?
+	erb :my_page
+end
+
+post 'save_user_photo' do 
+	file = params[:img][:tempfile]
+
+	File.open("./public/photo/#{session[:user].id}", 'wb') do |f|
+		f.write(file.read)
+	end
+end	
 
 #---------------- TODO ----------------
 #Створити коректний календар, додати можливість динамічно 
@@ -194,7 +218,6 @@ post '/upload_photo' do
 	File.open("./public/photo/#{@filename}", 'wb') do |f|
 		f.write(file.read)
 	end
-
 end
 
 def login?(route = '/')

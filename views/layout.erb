@@ -5,34 +5,23 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />   
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="#">News</a></li>
-			<li><a href="/calendar">Calendar</a></li>
-			<li><a href="#">Photos</a></li>
-			<li><a href="#">About</a></li>
-		</ul>
-	</nav>	
-	<% if session[:user] == nil %>
-		<div class='button' id="sign_in_button">
-			
-			<a class="link" id="sign_in_link" href="/login">S</a>
+	<div class="banner_image">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="/calendar">Calendar</a></li>
+				<li><a href="#">Photos</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</nav>
+	</div>
 
-			<form id="login_form" method="post" action="/sign_in">
-				<input required type="text" name="login" size="10">
-				<input required type="text" name="password" size="10">
-				<input id="login_button" type="submit" value="Sing in" name="submit">
-			</form>
-		</div>
-		<div class="button" id="sign_up_button">
-			<a class="link" href="/sign_up">R</a>
-		</div>
-		
+	<% unless session[:user] %>
+		<div class="button"><a href="/sign_in">Sign in</a></div>
+		<div class="button"><a href="/sign_up">Sign up</a></div>
 	<% else %>
-		<div class="button" id="logout_button">
-			<a class="link" href="/logout">L</a>
-		</div>
+		<div class="button"><a href="/logout">Logout</a></div>
 	<% end %>
 
 	<p><%= session[:error] %></p>
