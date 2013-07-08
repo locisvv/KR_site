@@ -1,4 +1,5 @@
-<form method="post" action="/upload_photo" enctype="multipart/form-data">
+<!-- <div class="photo" style='background-image: url("/photo/<%= session[:user].photo_name %>");'></div> -->
+<form method="post" action="/save_user_photo" enctype="multipart/form-data">
    <p><strong>Укажите картинку в формате JPEG, PNG или GIF</strong></p>
    <p><input type="file" name="img" multiple>
    <input type="submit" value="Отправить"></p>

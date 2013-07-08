@@ -2,6 +2,21 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
+require 'mini_magick'
+#--------------TODO--------------
+#1.  Відправки email при реєестрації
+#2.  Зменшення фотографій
+#3.  Створення альбомів
+#4.  Оптимізація запитів до БД
+#5.  Добавлення фотографій до постів
+#6.  Добавити дані користувача
+#7.  Реєестрація через інші сайти
+#8.  Адаптивний дизайн
+#9.  Редактор тексту
+#10. Сторінка "Про нас" 
+#11. Сторінка "Календар"
+#12. Глова сторінка
+#--------------------------------
 
 # configure :production do
 #   DataMapper.setup(:default, ENV['DATABASE_URL'])
@@ -134,12 +149,27 @@ get '/my_page' do
 	erb :my_page
 end
 
-post 'save_user_photo' do 
+post '/save_user_photo' do 
 	file = params[:img][:tempfile]
 
-	File.open("./public/photo/#{session[:user].id}", 'wb') do |f|
-		f.write(file.read)
+	user = User.get(session[:user].id)
+
+	if user
+		File.open("./public/photo/#{user.id}.jpg", 'wb') do |f|
+			f.write(file.read)
+		end
+
+		buffer = StringIO.new(File.open("1.jpg","rb") { |f| f.read })
+		print "\n\n\n" + MiniMagick.image_magick_version + "\n\n\n"
+
+		image.resize "100x100"
+		image.write  "2.jpg"
+	
+
+		user.photo_name = user.id.to_s + ".jpg"
+		user.save
 	end
+	redirect back
 end	
 
 #---------------- TODO ----------------

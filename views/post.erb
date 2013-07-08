@@ -7,14 +7,10 @@
 <div class="comments">
 	<%if @comments.size != 0%> 
 		<% @comments.each do |comment| %>
+			<% user = User.get(comment.user_id)%>
 			<div class="comment">
-				<div class="photo">
-
-					
-						<img src="/photo/Koala.jpg"/>
-					
-
-					<span><%= User.get(comment.user_id).name %></span>
+				<div class="photo" style='background-image: url("/photo/<%= user.photo_name %>");'>
+					<span><%= user.name %></span>
 				</div>
 
 				<div class="triangle"></div>

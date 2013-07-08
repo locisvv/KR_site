@@ -180,6 +180,7 @@ label{
 }
 .photo{
 	margin-bottom: 50px;
+	background-size: cover;
 	position: absolute;
     width: 100px;
     height: 100px;
