@@ -19,7 +19,7 @@ require 'mini_magick'
 #--------------------------------
 
 
-DataMapper.setup(:default, 'postgres://postgres:80502457135@localhost/db')
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
 
 class User
   include DataMapper::Resource
