@@ -5,7 +5,7 @@ require 'data_mapper'
 require 'mini_magick'
 #--------------TODO--------------
 #1.  Відправки email при реєестрації
-#2.  Зменшення фотографій
+#2. -Зменшення фотографій
 #3.  Створення альбомів
 #4.  Оптимізація запитів до БД
 #5.  Добавлення фотографій до постів
@@ -18,7 +18,8 @@ require 'mini_magick'
 #12. Глова сторінка
 #--------------------------------
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
+
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class User
   include DataMapper::Resource
