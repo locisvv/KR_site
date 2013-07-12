@@ -19,7 +19,7 @@ require 'mini_magick'
 #--------------------------------
 
 
-DataMapper.setup(:default, ENV['DATABASE_URL'])
+DataMapper.setup(:default, 'postgres://postgres:80502457135@localhost/db')
 
 class User
   include DataMapper::Resource
@@ -119,14 +119,14 @@ post '/sign_up' do
 		)
 		user.save
 
-		if params[:img].empty?
-			file = params[:img][:tempfile]
-			File.open("./public/photo/{user.id}", 'wb') do |f|
-				f.write(file.read)
-			end
-			user.photo_name = user.id
-			user.save
-		end
+		# if params[:img].empty?
+		# 	file = params[:img][:tempfile]
+		# 	File.open("./public/photo/{user.id}", 'wb') do |f|
+		# 		f.write(file.read)
+		# 	end
+		# 	user.photo_name = user.id
+		# 	user.save
+		# end
 
 		redirect to('/')
 	end
