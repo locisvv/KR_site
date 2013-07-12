@@ -18,14 +18,6 @@ require 'mini_magick'
 #12. Глова сторінка
 #--------------------------------
 
-# configure :production do
-#   DataMapper.setup(:default, ENV['DATABASE_URL'])
-# end
-
-# configure :development do
-#   DataMapper.setup(:default, 'sqlite:db.sqlite3')
-# end
-
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:db.sqlite3')
 
 class User
@@ -159,16 +151,15 @@ post '/save_user_photo' do
 			f.write(file.read)
 		end
 
-		buffer = StringIO.new(File.open("1.jpg","rb") { |f| f.read })
-		print "\n\n\n" + MiniMagick.image_magick_version + "\n\n\n"
+		image = MiniMagick::Image.open("./public/photo/#{user.id}.jpg")
 
 		image.resize "100x100"
-		image.write  "2.jpg"
-	
+		image.write  "./public/photo/small/" + user.id.to_s + ".jpg"
 
 		user.photo_name = user.id.to_s + ".jpg"
 		user.save
 	end
+
 	redirect back
 end	
 
@@ -256,4 +247,3 @@ def login?(route = '/')
 		redirect to(route)	
 	end
 end
-
