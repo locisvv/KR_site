@@ -67,7 +67,7 @@ class Photo
 end	
 
 DataMapper.finalize
-DataMapper.auto_upgrade!
+# DataMapper.auto_upgrade!
 
 enable :sessions
 
