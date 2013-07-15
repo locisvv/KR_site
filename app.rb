@@ -19,8 +19,8 @@ require 'mini_magick'
 #--------------------------------
 
 
-# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://prcmcasccpmghd:TeDeeysACIclNFDVgaB0gHZQ0h@ec2-54-235-192-45.compute-1.amazonaws.com:5432/dbgs14qk6pe3vd')
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://prcmcasccpmghd:TeDeeysACIclNFDVgaB0gHZQ0h@ec2-54-235-192-45.compute-1.amazonaws.com:5432/dbgs14qk6pe3vd')
 
 class User
   include DataMapper::Resource
@@ -68,6 +68,7 @@ class Photo
 end	
 
 DataMapper.finalize
+DataMapper.auto_migrate!
 # DataMapper.auto_upgrade!
 
 enable :sessions
