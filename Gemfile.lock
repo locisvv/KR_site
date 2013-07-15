@@ -57,6 +57,7 @@ GEM
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
     multi_json (1.7.7)
+    pg (0.15.1)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -76,4 +77,5 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   mini_magick
+  pg
   sinatra
