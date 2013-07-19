@@ -14,20 +14,20 @@
 				<li><a href="#">Photos</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
+			<div class="settings">
+				<% unless session[:user] %>
+					<li class="button"><a href="/sign_in">Sign in</a></li>
+					<li class="button"><a href="/sign_up">Sign up</a></li>
+				<% else %>
+					<li class="button"><a href="/logout">Logout</a></li>
+					<li class="button"><a href="/new_post">New post</a></li>
+					<li class="button"><a href="/my_page">My page</a></li>
+				<% end %>
+			</div>
 		</nav>
 	</div>
-
-	<% unless session[:user] %>
-		<div class="button"><a href="/sign_in">Sign in</a></div>
-		<div class="button"><a href="/sign_up">Sign up</a></div>
-	<% else %>
-		<div class="button"><a href="/logout">Logout</a></div>
-	<% end %>
-
 	<p><%= session[:error] %></p>
 	<% session[:error] = "" %>
-	<div class="posts">
-		<%= yield %>
-	</div>
+	<%= yield %>
 </body>	
 </html>

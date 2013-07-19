@@ -1,8 +1,10 @@
-<% @posts.each do |post| %>
-	<div class="post">
-		<h2><%= post.title %></h2>
-		<p><%= post.subtext %></p>
-		<a href="/post/<%= post.id %>">Next...</a>
-		<h3><%= Time.at(post.created_at).strftime("%d-%m-%Y")%></h3>
-	</div>	
-<% end %>
+<div class="posts">
+	<% @posts.each do |post| %>
+		<div class="post">
+			<h2><%= post.title %></h2>
+			<p><%= post.subtext %></p>
+			<a href="/post/<%= post.id %>">Next...</a>
+			<h3><%= Time.at(post.created_at).strftime("%d-%m-%Y")%></h3>
+		</div>	
+	<% end %>
+</div>

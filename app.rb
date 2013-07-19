@@ -3,6 +3,7 @@ require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
 require 'mini_magick'
+
 #--------------TODO--------------
 #1.  Відправки email при реєестрації
 #2. -Зменшення фотографій
@@ -16,11 +17,14 @@ require 'mini_magick'
 #10. Сторінка "Про нас" 
 #11. Сторінка "Календар"
 #12. Глова сторінка
+#13. Зaвантаження файлів через Amazon S3
+#14. AJAX запроси
 #--------------------------------
 
-
+# https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-ruby 
+# - використовувати для налаштування бази даних і не забути DataMapper.auto_migrate!
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
-# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://prcmcasccpmghd:TeDeeysACIclNFDVgaB0gHZQ0h@ec2-54-235-192-45.compute-1.amazonaws.com:5432/dbgs14qk6pe3vd')
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite://database.db')
 
 class User
   include DataMapper::Resource
@@ -68,8 +72,8 @@ class Photo
 end	
 
 DataMapper.finalize
-DataMapper.auto_migrate!
-# DataMapper.auto_upgrade!
+# DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
 enable :sessions
 
@@ -156,7 +160,7 @@ post '/save_user_photo' do
 
 		image = MiniMagick::Image.open("./public/photo/#{user.id}.jpg")
 
-		image.resize "100x100"
+		image.resize "200x200"
 		image.write  "./public/photo/small/" + user.id.to_s + ".jpg"
 
 		user.photo_name = user.id.to_s + ".jpg"
@@ -223,12 +227,13 @@ post '/new_comment' do
 		redirect back
 	end
 
-	comment = Comment.create(:text => params[:text],
+	@comment = Comment.create(:text => params[:text],
 							 :post_id => params[:post_id],
 							 :user_id => session[:user].id)
-	comment.save
-
-	redirect back
+	
+	print @comment.save
+	
+	erb :comment, :layout => false
 end
 
 get '/upload_photo' do

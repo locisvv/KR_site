@@ -4,29 +4,28 @@
 	<p class="content"><%= @post.text %></p>
 </div>
 
-<div class="comments">
+<div id="comments">
 	<%if @comments.size != 0%> 
 		<% @comments.each do |comment| %>
 			<% user = User.get(comment.user_id)%>
 			<div class="comment">
-				<div class="photo" style='background-image: url("/photo/<%= user.photo_name %>");'>
-					<span><%= user.name %></span>
+				<div class="photo" style='background-image: url("/photo/small/<%= user.photo_name %>");'>
 				</div>
 
 				<div class="triangle"></div>
 				<div class="comment_content">
 					<p class="comment_text"><%= comment.text %></p>
-					<p class="comment_date"><%= Time.at(comment.created_at).strftime("%d-%m-%Y %k:%M") %></p>
+					<p class="comment_date"><%= "<b>" + user.name + "</b> " + Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></p>
 				</div>
-			</div>	
+			</div>
 		<% end %>
 	<% end %>
-
-	<form class="comment_form" method="post" action="/new_comment">
-		<p>Comment</p>
-		<textarea type="text" name="text" required></textarea>
-		<p>
-		<input type="hidden" name="post_id" value="<%= @post.id %>">	
-		<input  type="submit" value="Send comment" name="submit">
-	</form>
 </div>
+<form onsubmit="sendComment();return false;" class="comment_form" name="comment_form" method="post" action="/new_comment">
+	<p>Comment</p>
+	<textarea type="text" name="text" required></textarea>
+	<p>
+	<input type="hidden" name="post_id" value="<%= @post.id %>">	
+	<input  type="submit" value="Send comment" name="submit">
+</form>
+<script type="text/javascript" src="../js/send_comment.js"></script>
