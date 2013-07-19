@@ -151,7 +151,7 @@ label{
 	width: 600px;
 	height: 100px;
 }
-.post_form #send_button, .comment_form input{
+.post_form #send_button, #comment_form input{
 	border: none;
 	color: #fff;
 	padding: 10px;
@@ -159,15 +159,15 @@ label{
 }
 
 /*-------- /post/:id; --------*/
-#comments{
+#comments, #comment_form{
 	margin: 10px 10% 10px 10%;
 }
-.comment_form textarea{
+#comment_form form{
+	margin: 0 0 0 180px;
+}
+#comment_form textarea{
 	width: 500px;
 	height: 100px;
-}
-.comment_form{
-	margin: 10px 10% 10px 10%;
 }
 .comment{
 	margin: 30px;

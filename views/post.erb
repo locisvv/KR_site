@@ -21,11 +21,13 @@
 		<% end %>
 	<% end %>
 </div>
-<form onsubmit="sendComment();return false;" class="comment_form" name="comment_form" method="post" action="/new_comment">
-	<p>Comment</p>
-	<textarea type="text" name="text" required></textarea>
-	<p>
-	<input type="hidden" name="post_id" value="<%= @post.id %>">	
-	<input  type="submit" value="Send comment" name="submit">
-</form>
-<script type="text/javascript" src="../js/send_comment.js"></script>
+<div id="comment_form">
+	<form onsubmit="sendComment();return false;" name="comment_form" method="post" action="/new_comment">
+		<p>Comment</p>
+		<textarea type="text" name="text" required></textarea>
+		<p>
+		<input type="hidden" name="post_id" value="<%= @post.id %>">	
+		<input  type="submit" value="Send comment" name="submit">
+	</form>
+	<script type="text/javascript" src="../js/send_comment.js"></script>
+</div>
