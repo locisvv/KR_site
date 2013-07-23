@@ -1,0 +1,7 @@
+<%if @url%>
+	<p><%=@url%></p>
+<%end%>
+<form method="get" action="/dropbox_sign_in">
+		<input required type="text" name="access_token">
+		<input type="submit" value="Send key" name="submit">
+</form>

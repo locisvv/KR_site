@@ -3,7 +3,7 @@ require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
 require 'mini_magick'
-
+require 'dropbox_sdk'
 #--------------TODO--------------
 #1.  Відправки email при реєестрації
 #2. -Зменшення фотографій
@@ -76,6 +76,8 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 enable :sessions
+
+@@dropboxClient
 
 get '/' do
 	@posts = Post.all
@@ -236,17 +238,27 @@ post '/new_comment' do
 	erb :comment, :layout => false
 end
 
+get '/photos' do
+	erb :photos
+end	
+
 get '/upload_photo' do
-	erb :upload_photo
-end
+	# Get your app key and secret from the Dropbox developer website
+	
 
-post '/upload_photo' do
-	@filename = params[:img][:filename]
-	file = params[:img][:tempfile]
+	@@dropboxClient.media('/1.jpg')
 
-	File.open("./public/photo/#{@filename}", 'wb') do |f|
-		f.write(file.read)
-	end
+	# file = open('./public/photo/small/1.jpg')
+	# response = client.put_file('/1.jpg', file)
+	# puts "uploaded:", response.inspect
+
+	# root_metadata = client.metadata('/')
+	# puts "metadata:", root_metadata.inspect
+
+	# contents, metadata = client.get_file_and_metadata('/1.jpg')
+	# open('1.jpg', 'w') {|f| f.puts contents }
+
+	# erb :upload_photo
 end
 
 def login?(route = '/')
@@ -254,4 +266,21 @@ def login?(route = '/')
 		session[:error] = 'Authenticate!'
 		redirect to(route)	
 	end
+end
+
+get '/dropbox_sign_in' do 
+	APP_KEY = 'kbxu559ez4kx551'
+	APP_SECRET = 'jua7m4tqj943lpz'
+	
+	flow = DropboxOAuth2FlowNoRedirect.new(APP_KEY, APP_SECRET)
+	
+	unless params[:access_token]
+		@url = flow.start()
+		erb :dropbox_sign_in
+	else
+		access_token, user_id = flow.finish(params[:access_token])
+
+		@@dropboxClient = DropboxClient.new(access_token)
+		@@dropboxClient.account_info().inspect
+	end	
 end
