@@ -21,10 +21,14 @@ require 'dropbox_sdk'
 #14. AJAX запроси
 #--------------------------------
 
+#Для перегляду логів запросів
+#DataMapper::Logger.new($stdout, :debug)
+
 # https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-ruby 
 # - використовувати для налаштування бази даних і не забути DataMapper.auto_migrate!
+
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
-# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite://database.db')
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:///database.db')
 
 class User
   include DataMapper::Resource
@@ -37,6 +41,9 @@ class User
 	property :photo_name, 	String
 
   	has n, :posts
+  	has n, :comment
+  	has n, :album
+  	has n, :photo
 end
 
 class Post
@@ -63,12 +70,26 @@ class Comment
 	belongs_to :post
 end
 
+class Album 
+	include DataMapper::Resource
+
+	property :id,    	  Serial
+	property :name,  	  String
+	property :created_at, Integer, :default => Time.now.to_i
+
+	belongs_to :user
+	has n, :photo	
+end
+
 class Photo
 	include DataMapper::Resource
 
 	property :id,    	  Serial
 	property :name,  	  String
 	property :created_at, Integer, :default => Time.now.to_i
+
+	belongs_to :user
+	belongs_to :album
 end	
 
 DataMapper.finalize
@@ -77,6 +98,7 @@ DataMapper.auto_upgrade!
 
 enable :sessions
 
+#Client for DropBox
 @@dropboxClient
 
 get '/' do
@@ -127,15 +149,6 @@ post '/sign_up' do
 		)
 		user.save
 
-		# if params[:img].empty?
-		# 	file = params[:img][:tempfile]
-		# 	File.open("./public/photo/{user.id}", 'wb') do |f|
-		# 		f.write(file.read)
-		# 	end
-		# 	user.photo_name = user.id
-		# 	user.save
-		# end
-
 		redirect to('/')
 	end
 end
@@ -155,17 +168,10 @@ post '/save_user_photo' do
 
 	user = User.get(session[:user].id)
 
-	if user
-		File.open("./public/photo/#{user.id}.jpg", 'wb') do |f|
-			f.write(file.read)
-		end
-
-		image = MiniMagick::Image.open("./public/photo/#{user.id}.jpg")
-
-		image.resize "200x200"
-		image.write  "./public/photo/small/" + user.id.to_s + ".jpg"
-
+	if user and file
 		user.photo_name = user.id.to_s + ".jpg"
+		upload_photo(file, user.photo_name)
+		
 		user.save
 	end
 
@@ -212,12 +218,20 @@ end
 get '/post/:id' do
 	@post = Post.first(:id => params[:id])
 
+	# @@dropboxClient.media('/3.jpg')['url']
 	unless @post
 		session[:error] = "Empty post"
 		redirect back
 	end
 
+	@photo_url
+
 	@comments = Comment.all(:post_id => params[:id])
+	# @comments.each	do |comment|
+	# 	user = comment.user
+	# 	@photo_url[user.id] = @@dropboxClient.media('/user_photos/small/' + user.photo_name)['url']
+	# end
+
 	erb :post
 end
 
@@ -244,9 +258,8 @@ end
 
 get '/upload_photo' do
 	# Get your app key and secret from the Dropbox developer website
-	
 
-	@@dropboxClient.media('/1.jpg')
+	print 'url ' + @@dropboxClient.media('/3.jpg')['url']
 
 	# file = open('./public/photo/small/1.jpg')
 	# response = client.put_file('/1.jpg', file)
@@ -259,13 +272,6 @@ get '/upload_photo' do
 	# open('1.jpg', 'w') {|f| f.puts contents }
 
 	# erb :upload_photo
-end
-
-def login?(route = '/')
-	unless session[:user]
-		session[:error] = 'Authenticate!'
-		redirect to(route)	
-	end
 end
 
 get '/dropbox_sign_in' do 
@@ -284,3 +290,27 @@ get '/dropbox_sign_in' do
 		@@dropboxClient.account_info().inspect
 	end	
 end
+
+helpers do
+	def upload_photo(file, nameFile)
+		if file and nameFile
+			image = MiniMagick::Image.read(file)
+			image.resize "200x200"
+			
+			newFile = Tempfile.new("tempimage")
+
+	  		image.write(newFile.path)
+			
+			response = @@dropboxClient.put_file('/user_photos/small/' + nameFile, newFile)
+		else
+			false
+		end	
+	end
+
+	def login?(route = '/')
+		unless session[:user]
+			session[:error] = 'Authenticate!'
+			redirect to(route)	
+		end
+	end
+end	

@@ -7,15 +7,13 @@
 <div id="comments">
 	<%if @comments.size != 0%> 
 		<% @comments.each do |comment| %>
-			<% user = User.get(comment.user_id)%>
 			<div class="comment">
-				<div class="photo" style='background-image: url("/photo/small/<%= user.photo_name %>");'>
+				<div class="photo" style='background-image: url("<%= @@dropboxClient.media('/user_photos/small/' + comment.user.photo_name)['url'] %>");'>
 				</div>
-
 				<div class="triangle"></div>
 				<div class="comment_content">
 					<p class="comment_text"><%= comment.text %></p>
-					<p class="comment_date"><%= "<b>" + user.name + "</b> " + Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></p>
+					<p class="comment_date"><%= "<b>" + comment.user.name + "</b> " + Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></p>
 				</div>
 			</div>
 		<% end %>
