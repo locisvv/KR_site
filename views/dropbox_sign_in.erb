@@ -1,5 +1,5 @@
 <%if @url%>
-	<p><%=@url%></p>
+	<a href="<%=@url%>">Sign in</a>
 <%end%>
 <form method="get" action="/dropbox_sign_in">
 		<input required type="text" name="access_token">

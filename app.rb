@@ -27,8 +27,8 @@ require 'dropbox_sdk'
 # https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-ruby 
 # - використовувати для налаштування бази даних і не забути DataMapper.auto_migrate!
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
-# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:///database.db')
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:///database.db')
 
 class User
   include DataMapper::Resource

@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.3.5)
-    bcrypt-ruby (3.1.1)
+    bcrypt-ruby (3.1.1-x86-mingw32)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -49,15 +49,17 @@ GEM
       uuidtools (~> 2.1)
     dm-validations (1.2.0)
       dm-core (~> 1.2.0)
-    do_postgres (0.10.13)
+    do_postgres (0.10.13-x86-mingw32)
       data_objects (= 0.10.13)
+    dropbox-sdk (1.6.1)
+      json
     fastercsv (1.5.5)
     json (1.8.0)
     json_pure (1.8.0)
-    mini_magick (3.6.0)
+    mini_magick (3.5.0)
       subexec (~> 0.2.1)
     multi_json (1.7.7)
-    pg (0.15.1)
+    pg (0.16.0-x86-mingw32)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -71,11 +73,12 @@ GEM
     uuidtools (2.1.4)
 
 PLATFORMS
-  ruby
+  x86-mingw32
 
 DEPENDENCIES
   data_mapper
   dm-postgres-adapter
-  mini_magick
+  dropbox-sdk (~> 1.6.1)
+  mini_magick (~> 3.5.0)
   pg
   sinatra
