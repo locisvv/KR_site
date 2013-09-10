@@ -1,3 +1,3 @@
-h = {}
-h[:thee] = 3
-p h.thee
+
+puts " dff \n dff"
+puts "  dfg"

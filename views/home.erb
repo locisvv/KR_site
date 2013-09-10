@@ -1,10 +1,30 @@
-<div class="posts">
-	<% @posts.each do |post| %>
-		<div class="post">
-			<h2><%= post.title %></h2>
-			<p><%= post.subtext %></p>
-			<a href="/post/<%= post.id %>">Next...</a>
-			<h3><%= Time.at(post.created_at).strftime("%d-%m-%Y")%></h3>
-		</div>	
-	<% end %>
-</div>
+<div class="content">
+    <div class="w-row">
+      <% @posts.each do |post| %>
+        <div class="w-col w-col-3">
+          <div class="news_bloc">
+            <div class="img1 img_news"></div>
+            <div class="text_bloc">
+              <h3><%= post.title %></h3>
+              <p><%= post.subtext %></p>
+              <div class="news_data">
+                <strong><%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="w-row">
+      <div class="w-col w-col-6">
+        <div class="event">
+          <h1>Alkalmaink</h1>
+        </div>
+      </div>
+      <div class="w-col w-col-6">
+        <div class="event">
+          <h1>Hirdetesek</h1>
+        </div>
+      </div>
+    </div>
+  </div>

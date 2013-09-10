@@ -4,6 +4,7 @@ require 'sinatra'
 require 'data_mapper' 
 require 'mini_magick'
 require 'rack-flash'
+require 'picasa'
 
 #--------------TODO--------------
 #1.  Відправки email при реєестрації
@@ -37,8 +38,8 @@ DataMapper.setup(:default, 'sqlite:db.sqlite')
 
 Dir["./models/*.rb"].each { |file| require file }
 
-DataMapper.auto_migrate!
-#DataMapper.auto_upgrade!
+#DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
 Dir["./helpers/*.rb"].each { |file| require file }
 Dir["./controllers/*.rb"].each { |file| require file }

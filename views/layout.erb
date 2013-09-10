@@ -1,33 +1,51 @@
 <!doctype html>
 <html>
 <head>
-   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>KRT</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />   
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/krt.webflow.css">
+  <script type="text/javascript" src="js/webflow.js" defer></script>
 </head>
 <body>
-	<div class="banner_image">
-		<nav>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="#">News</a></li>
-				<li><a href="/calendar">Calendar</a></li>
-				<li><a href="#">Photos</a></li>
-				<li><a href="#">About</a></li>
-			</ul>
-			<div class="settings">
-				<% unless session[:user] %>
-					<li class="button"><a href="/sign_in">Sign in</a></li>
-					<li class="button"><a href="/sign_up">Sign up</a></li>
-				<% else %>
-					<li class="button"><a href="/logout">Logout</a></li>
-					<li class="button"><a href="/new_post">New post</a></li>
-					<li class="button"><a href="/my_page">My page</a></li>
-				<% end %>
-			</div>
-		</nav>
-	</div>
-	<p><%= session[:error] %></p>
-	<% session[:error] = "" %>
+  <div class="header">
+    <div class="w-row">
+      <div class="w-col w-col-6">
+        <div class="company">Kajdanoi Református Templom</div>
+      </div>
+      <div class="w-col w-col-6">
+        <div class="login_bloc">
+          <% unless session[:user] %>
+            <a class="login_link" href="/sign_in">Belépés</a>
+            <a class="login_link" href="/sign_up">Regisztráció</a>
+          <% else %>
+            <a class="login_link" href="/logout">Kilépés</a>
+            <a class="login_link" href="/new_post">New post</a>
+            <a class="login_link" href="/my_page">Az én oldalam</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="news">
+    <div class="news_title">
+      <div class="new_title"><strong>Táborozás a Szelidi tónál</strong>
+      </div>
+    </div>
+  </div>
+  <div class="w-clearfix menu">
+    <a class="menu-link" href="/" target="_self">Címlap</a>
+    <a class="menu-link" href="#" target="_self">Közélet</a>
+    <a class="menu-link" href="#" target="_self">Képgaléria</a>
+    <a class="menu-link" href="#" target="_self">Mirólunk</a>
+  </div>
+  <% if session[:error] != "" %>
+    <p><%= session[:error] %></p>
+    <% session[:error] = "" %>
+  <% end %>
 	<%= yield %>
 </body>	
 </html>

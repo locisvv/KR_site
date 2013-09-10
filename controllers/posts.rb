@@ -7,7 +7,7 @@ end
 post '/save_post' do
 	login?
 
-	if params[:title].empty? or params[:text].empty? or params[:subtext].empty?
+	if params[:title] or params[:text] or params[:subtext]
 		params[:error] = 'Empty content'
 		redirect to('/new_post')
 	end
@@ -23,7 +23,6 @@ end
 get '/post/:id' do
 	@post = Post.first(:id => params[:id])
 
-	# @@dropboxClient.media('/3.jpg')['url']
 	unless @post
 		session[:error] = "Empty post"
 		redirect back
@@ -32,10 +31,9 @@ get '/post/:id' do
 	@photo_url
 
 	@comments = Comment.all(:post_id => params[:id])
-	# @comments.each	do |comment|
-	# 	user = comment.user
-	# 	@photo_url[user.id] = @@dropboxClient.media('/user_photos/small/' + user.photo_name)['url']
-	# end
+	@comments.each	do |comment|
+	 	user = comment.user
+	end
 
 	erb :post
 end

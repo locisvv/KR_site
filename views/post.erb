@@ -8,8 +8,6 @@
 	<%if @comments.size != 0%> 
 		<% @comments.each do |comment| %>
 			<div class="comment">
-				<div class="photo" style='background-image: url("<%= @@dropboxClient.media('/user_photos/small/' + comment.user.photo_name)['url'] %>");'>
-				</div>
 				<div class="triangle"></div>
 				<div class="comment_content">
 					<p class="comment_text"><%= comment.text %></p>
