@@ -1,10 +1,11 @@
-<form  class="post_form" method="post" action="/save_post">
-	<p>Title</p>
-	<input type="text" name="title" size="100" required>
-	<p>Subtext</p>
-	<textarea name="subtext" required></textarea>
-	<p>Text</p>
-	<textarea name="text" required></textarea>
-	<p>
-	<input  id="send_button" type="submit" value="Send post" name="submit">
+<form class="form" method="post" action="/save_post">
+  <div class="form_block">
+    <h1>Új cikk</h1>
+    <input class="w-input" type="text" placeholder="A cikk címe" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
+    <textarea class="w-input" placeholder="Rövid leírás" name="subtext" required="required"></textarea>
+    <textarea class="w-input" placeholder="A cikk" name="text" required="required"></textarea>
+    <input class="w-input" type="text" placeholder="Example Text" name="field" required="required"></input>
+    <input class="w-input" type="text" placeholder="Example Text" name="field" required="required"></input>
+  </div>
+  <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
 </form>
