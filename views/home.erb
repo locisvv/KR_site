@@ -3,12 +3,12 @@
       <% @posts.each do |post| %>
         <div class="w-col w-col-3">
           <div class="news_bloc">
-            <div class="img1 img_news"></div>
+            <div class="img1 img_news" style="background-image: url(<%= post.photo %>);"></div>
             <div class="text_bloc">
-              <h3><%= post.title %></h3>
+              <h4><%= post.title %></h4>
               <p><%= post.subtext %></p>
               <div class="news_data">
-                <strong><%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%></strong>
+                <%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%>
               </div>
             </div>
           </div>

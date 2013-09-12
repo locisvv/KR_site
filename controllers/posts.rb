@@ -7,16 +7,24 @@ end
 post '/save_post' do
 	login?
 
-	if params[:title] or params[:text] or params[:subtext]
+	unless params[:title] or params[:text] or params[:subtext] or params[:img]
 		params[:error] = 'Empty content'
 		redirect to('/new_post')
 	end
 
-	post = Post.create(:title => params[:title], 
+	post = Post.create(:title => params[:title],
 					   :text => params[:text],
-					   :subtext => params[:subtext], 
+					   :subtext => params[:subtext],
 					   :user_id => session[:user].id)
 	post.save
+
+	photo = params[:img][:tempfile]
+	photo_name = post.id.to_s + params[:img][:filename]
+
+	photo_src = upload_photo(photo, photo_name, "post")
+	
+	post.update(photo: photo_src)
+
 	redirect to('/')
 end	
 

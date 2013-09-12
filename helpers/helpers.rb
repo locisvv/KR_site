@@ -1,14 +1,27 @@
 helpers do
-	def upload_photo(file, nameFile)
-		if file and nameFile
-			image = MiniMagick::Image.read(file)
-			image.resize "200x200"
-			
-			newFile = Tempfile.new("tempimage")
+	@@picasa_client = nil
 
-	  		image.write(newFile.path)
+	def upload_photo(file, title, album_name)
+		get_picasa
+		if file and title
 			
-			# response = @@dropboxClient.put_file('/user_photos/small/' + nameFile, newFile)
+			albums = @@picasa_client.album.list.entries
+		  	album = albums.find { |album| album.title == album_name }
+
+		  	@@picasa_client.photo.create(album.id,
+			    {
+			      	:binary => file.read,
+			      	:content_type => "image/jpeg",
+			      	:title => title,
+			      	:summary => ""
+			    }
+		  	)
+
+	  	  	photos = @@picasa_client.album.show(album.id).entries
+			photo = photos.find { |photo| photo.title == title }
+			
+			puts photo.content.src
+			return photo.content.src
 		else
 			false
 		end	
@@ -33,5 +46,8 @@ helpers do
 			flash[:error] = @@errors[:sign_in_admin]
 			redirect '/'
 		end		
-	end		
+	end
+	def get_picasa
+		@@picasa_client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov???")	
+	end	
 end	

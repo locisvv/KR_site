@@ -4,7 +4,7 @@ get '/' do
 end
 
 get '/picasa' do
-	client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov80502457135")
+	client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov??")
 	
 
 	albums = client.album.list.entries

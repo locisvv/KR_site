@@ -17,11 +17,13 @@ end
 class Post
 	include DataMapper::Resource
 
-	property :id,    	  Serial
-	property :title,      String
-	property :subtext,	  Text	
-	property :text,  	  Text
-	property :created_at, Integer, :default => Time.now.to_i
+	property :id,    	    Serial
+	property :title,        String
+	property :photo,        Text
+	property :header_photo, Text
+	property :subtext,	    Text	
+	property :text,  	    Text
+	property :created_at,   Integer, :default => Time.now.to_i
 
 	belongs_to :user
 	has n, :comment
