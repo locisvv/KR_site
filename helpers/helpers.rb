@@ -1,8 +1,12 @@
 helpers do
 	@@picasa_client = nil
 
-	def upload_photo(file, title, album_name)
+	def upload_photo(params_file, album_name)
 		get_picasa
+
+		file = params_file[:tempfile]
+		title = params_file[:filename]
+
 		if file and title
 			
 			albums = @@picasa_client.album.list.entries
@@ -20,8 +24,13 @@ helpers do
 	  	  	photos = @@picasa_client.album.show(album.id).entries
 			photo = photos.find { |photo| photo.title == title }
 			
-			puts photo.content.src
-			return photo.content.src
+			photo_item = Photo.new( title: 		photo.title,
+									album_id: 	album.id,
+									small:  	photo.media.thumbnails[0].url,
+									medium: 	photo.media.thumbnails[1].url,
+									large:  	photo.media.thumbnails[2].url,
+									origin: 	photo.content.src)
+			return photo_item
 		else
 			false
 		end	
@@ -48,6 +57,6 @@ helpers do
 		end		
 	end
 	def get_picasa
-		@@picasa_client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov???")	
+		@@picasa_client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov80502457135")	
 	end	
 end	

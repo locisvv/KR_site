@@ -10,8 +10,6 @@ class User
 
   	has n, :posts
   	has n, :comment
-  	has n, :album
-  	has n, :photo
 end
 
 class Post
@@ -19,8 +17,7 @@ class Post
 
 	property :id,    	    Serial
 	property :title,        String
-	property :photo,        Text
-	property :header_photo, Text
+	property :header_photo, Integer
 	property :subtext,	    Text	
 	property :text,  	    Text
 	property :created_at,   Integer, :default => Time.now.to_i
@@ -55,9 +52,14 @@ class Photo
 	include DataMapper::Resource
 
 	property :id,    	  Serial
-	property :name,  	  String
+	property :title,  	  String
+	property :album_id,   Integer
+	property :small,  	  Text
+	property :medium,  	  Text
+	property :large,  	  Text
+	property :origin,  	  Text
 	property :created_at, Integer, :default => Time.now.to_i
 
-	belongs_to :user
-	belongs_to :album
+	property :album_id, Integer, index: true
+	property :post_id,   Integer, index: true
 end

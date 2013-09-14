@@ -3,7 +3,7 @@
       <% @posts.each do |post| %>
         <div class="w-col w-col-3">
           <div class="news_bloc">
-            <div class="img1 img_news" style="background-image: url(<%= post.photo %>);"></div>
+            <div class="img_news" style="background-image: url(<%= Photo.get(post.header_photo).large %>);"></div>
             <div class="text_bloc">
               <h4><%= post.title %></h4>
               <p><%= post.subtext %></p>

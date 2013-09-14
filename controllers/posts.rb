@@ -18,13 +18,12 @@ post '/save_post' do
 					   :user_id => session[:user].id)
 	post.save
 
-	photo = params[:img][:tempfile]
-	photo_name = post.id.to_s + params[:img][:filename]
-
-	photo_src = upload_photo(photo, photo_name, "post")
+	photo_header = upload_photo(params[:img], "post")
 	
-	post.update(photo: photo_src)
+	photo_header.post_id = post.id
+	photo_header.save
 
+	post.update(header_photo: photo_header.id)
 	redirect to('/')
 end	
 
