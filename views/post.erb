@@ -1,29 +1,39 @@
-<div class="post">
-	<h2 class="title"><%= @post.title %></h2>
-	<p class="content"><%= @post.subtext %></p>
-	<p class="content"><%= @post.text %></p>
-</div>
+</div>	
+  <div class="w-container post_block">
+    <h2><%= @post.title %></h2>
+    <div class="line"></div>
+    <p class="post_text"><%= @post.subtext %></p>
+    <p class="post_text"><%= @post.text %></p>
+    <h4 class="date_text"><%= Time.at(@post.created_at).strftime("%k:%M %d-%m-%Y") %></h4>
+  </div>
+  <div class="w-container comments">
+    <%if @comments.size != 0%> 
+      <% @comments.each do |comment| %>
+        <div class="w-row comment">
+          <div class="w-col w-col-2 w-hidden-small w-hidden-tiny">
+            <div class="user_image"></div>
+          </div>
+          <div class="w-col w-col-10 comment_text">
+            <h4><%= comment.user.name %></h4>
+            <p><%= comment.text %></p>
+            <h5 class="date_text"><%= Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="w-container comment_form">
+    <form onsubmit="sendComment();return false;" name="comment_form" method="post" action="/post/new_comment">
+      <textarea class="w-input" rows="4" name="text" placeholder="Example Text" required="required"></textarea>
+      <input type="hidden" name="post_id" value="<%= @post.id %>">
+      <input class="w-button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
+    </form>
 
-<div id="comments">
-	<%if @comments.size != 0%> 
-		<% @comments.each do |comment| %>
-			<div class="comment">
-				<div class="triangle"></div>
-				<div class="comment_content">
-					<p class="comment_text"><%= comment.text %></p>
-					<p class="comment_date"><%= "<b>" + comment.user.name + "</b> " + Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></p>
-				</div>
-			</div>
-		<% end %>
-	<% end %>
-</div>
-<div id="comment_form">
-	<form onsubmit="sendComment();return false;" name="comment_form" method="post" action="/new_comment">
-		<p>Comment</p>
-		<textarea type="text" name="text" required></textarea>
-		<p>
-		<input type="hidden" name="post_id" value="<%= @post.id %>">	
-		<input  type="submit" value="Send comment" name="submit">
-	</form>
-	<script type="text/javascript" src="../js/send_comment.js"></script>
-</div>
+    <div class="w-form-done">
+      <p>Thank you! Your submission has been received!</p>
+    </div>
+    <div class="w-form-fail">
+      <p>Oops! Something went wrong while submitting the form :(</p>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/send_comment.js"></script>

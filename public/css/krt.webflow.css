@@ -145,7 +145,7 @@ p {
 }
 .img_news {
   height: 200px;
-  width: 200px;
+  width: auto;
   margin: 10px;
   border: 1px none black;
   border-radius: 5px;
@@ -343,5 +343,67 @@ p {
   .form_block {
     padding-right: 10px;
     padding-left: 10px;
+  }
+}
+.date_text {
+  margin-top: 10px;
+  text-align: right;
+}
+.line {
+  height: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-color: #bbb;
+}
+.post_block {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 20px; 
+}
+.post_text {
+  direction: ltr;
+  font-size: 20px;
+  font-weight: 400;
+}
+.user_image {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+  border-radius: 100px;
+  background-color: #8f8f8f;
+}
+.comment {
+  margin: 5px 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.comments {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 800px;
+}
+.comment_text{
+  background-color: white;
+  border-radius: 10px;
+}
+.comment_form {
+  width: 800px;
+}
+@media (max-width: 991px) {
+  .comment_form {
+    width: auto;
+  }
+}
+@media (max-width: 767px) {
+  .user_image {
+    width: 100px;
+    height: 100px;
   }
 }

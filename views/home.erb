@@ -5,7 +5,7 @@
           <div class="news_bloc">
             <div class="img_news" style="background-image: url(<%= Photo.get(post.header_photo).large %>);"></div>
             <div class="text_bloc">
-              <h4><%= post.title %></h4>
+              <h4><a href="/post/<%= post.id%>"><%= post.title %></a></h4>
               <p><%= post.subtext %></p>
               <div class="news_data">
                 <%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%>

@@ -30,6 +30,8 @@ helpers do
 									medium: 	photo.media.thumbnails[1].url,
 									large:  	photo.media.thumbnails[2].url,
 									origin: 	photo.content.src)
+			photo_item.save
+
 			return photo_item
 		else
 			false

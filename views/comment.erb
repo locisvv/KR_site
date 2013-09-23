@@ -1,7 +1,10 @@
-<% user = User.get(@comment.user_id)%>
-
-<div class="triangle"></div>
-<div class="comment_content">
-	<p class="comment_text"><%= @comment.text %></p>
-	<p class="comment_date"><%= "<b>" + user.name + "</b> " + Time.at(@comment.created_at).strftime("%k:%M %d-%m-%Y") %></p>
+<div class="w-row comment">
+  <div class="w-col w-col-2 w-hidden-small w-hidden-tiny">
+    <div class="user_image"></div>
+  </div>
+  <div class="w-col w-col-10 comment_text">
+    <h4><%= @comment.user.name %></h4>
+    <p><%= @comment.text %></p>
+    <h5 class="date_text"><%= Time.at(@comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
+  </div>
 </div>

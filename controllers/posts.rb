@@ -1,10 +1,14 @@
-get '/new_post' do
+before '/post/*' do
+  	login_required
+end
+
+get '/post/new' do
 	login?
 
 	erb :new_post
 end
 
-post '/save_post' do
+post '/post/save' do
 	login?
 
 	unless params[:title] or params[:text] or params[:subtext] or params[:img]
@@ -12,18 +16,17 @@ post '/save_post' do
 		redirect to('/new_post')
 	end
 
-	post = Post.create(:title => params[:title],
-					   :text => params[:text],
-					   :subtext => params[:subtext],
-					   :user_id => session[:user].id)
-	post.save
-
-	photo_header = upload_photo(params[:img], "post")
+	header_photo = upload_photo(params[:header_img], "post")
+	title_photo = upload_photo(params[:title_img], "post")
 	
-	photo_header.post_id = post.id
-	photo_header.save
-
-	post.update(header_photo: photo_header.id)
+	post = Post.create(title: 		 params[:title],
+					   text: 	 	 params[:text],
+					   subtext: 	 params[:subtext],
+					   user_id: 	 session[:user].id,
+					   title_photo:  title_photo.id,
+					   header_photo: header_photo.id)
+	post.save
+	
 	redirect to('/')
 end	
 
@@ -45,7 +48,7 @@ get '/post/:id' do
 	erb :post
 end
 
-post '/new_comment' do
+post '/post/new_comment' do
 	login?("post/#{ params[:post_id] }")
 
 	if params[:text].empty?

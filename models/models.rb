@@ -18,6 +18,7 @@ class Post
 	property :id,    	    Serial
 	property :title,        String
 	property :header_photo, Integer
+	property :title_photo,  Integer
 	property :subtext,	    Text	
 	property :text,  	    Text
 	property :created_at,   Integer, :default => Time.now.to_i
@@ -53,13 +54,12 @@ class Photo
 
 	property :id,    	  Serial
 	property :title,  	  String
-	property :album_id,   Integer
 	property :small,  	  Text
 	property :medium,  	  Text
 	property :large,  	  Text
 	property :origin,  	  Text
 	property :created_at, Integer, :default => Time.now.to_i
 
-	property :album_id, Integer, index: true
-	property :post_id,   Integer, index: true
+	property :album_id,   Integer, index: true
+	# property :post_id,    Integer, index: true
 end

@@ -7,7 +7,7 @@ function sendComment(){
 	params = 'text=' + encodeURIComponent(comment) + 
 			 '&post_id=' + encodeURIComponent(postId);
 	
-	xhr.open('POST', '/new_comment?' + params, true);
+	xhr.open('POST', '/post/new_comment?' + params, true);
 	
 	xhr.onreadystatechange = function() {
 		if (this.readyState != 4) return;
@@ -17,7 +17,7 @@ function sendComment(){
 			return;
 		}
 
-		div = document.getElementById('comments');
+		div = document.getElementsByClassName('comments')[0];
 		div.appendChild(createComment(this.responseText));
 	}
 
