@@ -42,9 +42,8 @@
     <a class="menu-link" href="#" target="_self">Képgaléria</a>
     <a class="menu-link" href="#" target="_self">Mirólunk</a>
   </div>
-  <% if session[:error] != "" %>
-    <p><%= session[:error] %></p>
-    <% session[:error] = "" %>
+  <% if flash[:error]%>
+    <p><%= flash[:error] %></p>
   <% end %>
 	<%= yield %>
    <div class="footer">

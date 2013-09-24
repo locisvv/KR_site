@@ -23,12 +23,19 @@
     <% end %>
   </div>
   <div class="w-container comment_form">
-    <form onsubmit="sendComment();return false;" name="comment_form" method="post" action="/post/new_comment">
-      <textarea class="w-input" rows="4" name="text" placeholder="Example Text" required="required"></textarea>
-      <input type="hidden" name="post_id" value="<%= @post.id %>">
-      <input class="w-button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
-    </form>
-
+    <%if session[:user]%>
+      <form onsubmit="sendComment();return false;" name="comment_form" method="post" action="/post/new_comment">
+        <textarea class="w-input" rows="4" name="text" placeholder="Example Text" required="required"></textarea>
+        <input type="hidden" name="post_id" value="<%= @post.id %>">
+        <input class="w-button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
+      </form>
+    <%else%>
+      <div class="w-container">
+        <h4>A hozzaszolas használatához először be kell lépned.</h4>
+        <a class="login_link" href="/sign_in">Belépés</a>
+        <a class="login_link" href="/sign_up">Regisztráció</a>
+      </div>
+    <%end%>
     <div class="w-form-done">
       <p>Thank you! Your submission has been received!</p>
     </div>

@@ -35,11 +35,10 @@ DataMapper::Logger.new($stdout, :debug)
 
 # DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
 DataMapper.setup(:default, 'sqlite:db.sqlite')
-
+Dir["./helpers/*.rb"].each { |file| require file }
 Dir["./models/*.rb"].each { |file| require file }
 
 #DataMapper.auto_migrate!
 DataMapper.auto_upgrade!
 
-Dir["./helpers/*.rb"].each { |file| require file }
 Dir["./controllers/*.rb"].each { |file| require file }
