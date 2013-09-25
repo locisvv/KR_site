@@ -1,20 +1,27 @@
 get '/sign_in' do
-	erb :sign_in
+	if session[:user]
+		flash[:error] = @@errors[:logged_in]
+		redirect '/'
+	else
+		erb :sign_in
+	end
 end	
 
 post '/sign_in' do
 	if params[:login].empty? or params[:password].empty?
-		session[:error] = "Empty"
+		flash[:error] = @@errors[:empty_input]
 		redirect back
 	end
 
 	user = User.first(:login => params[:login], :password => params[:password])
+	
 	if user
 		session[:user] = user
+		redirect '/'
 	else
-		session[:error] = "Incorect password or login"	
+		flash[:error] = @@errors[:login]
+		redirect '/sign_in'
 	end 
-	redirect to('/')
 end
 
 get '/sign_up' do
@@ -22,31 +29,26 @@ get '/sign_up' do
 end
 
 post '/sign_up' do
+	if session[:user]
+		flash[:error] = @@errors[:registered]
+		redirect back
+	end
 
-	if params[:login].empty? or params[:name].empty? or params[:password].empty?
-		session[:error] = "Empty=)"
-		redirect to('/sign_up')
-	end	
-	
-	user = User.first(:login => params[:login])
+	user = User.create(params[:user])
 
-	if user
-		session[:error] = "Incorect !!!"
-		redirect to('/sign_up')
-	else
-		user = User.create(
-			:name => params[:name],
-			:login => params[:login],
-			:email => params[:email],
-			:password => params[:password]
-		)
+	if user.valid?
 		user.save
+		redirect '/'
+	else
+		flash[:error] = user.errors.collect do |k,v|
+        	"#{k} #{v}"
+      	end.join(' ')
 
-		redirect to('/')
+		redirect '/sign_up'
 	end
 end
 
 get '/logout' do
 	session[:user] = nil
-	redirect to('/')
+	redirect '/'
 end
