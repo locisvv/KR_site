@@ -1,15 +1,10 @@
-	<div class="sign_in_form">
-	<form method="post" action="/sign_in">
-		<p>
-			<label for="login">Login</label>
-			<input required id="login" type="text" name="login">
-		</p>
-		<p>
-			<label for="password">Password</label>
-			<input required id="password" type="password" name="password">
-		</p>
-		<p id="panel">
-			<input type="submit" value="Save user" name="submit">
-		</p>
-	</form>
-</div>
+<form class="form form_sign_up" method="post" action="/sign_in">
+  <div class="form_block">
+    <h1>Belépés</h1>
+    <input class="w-input" type="text" placeholder="Login" name="login" required="required"></input>
+    <input class="w-input" type="password" placeholder="Jelszó" name="password" required="required"></input>
+  </div>
+  <div class="footer_form">
+    <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
+  </div>
+</form>

@@ -1,24 +1,12 @@
-<div class="new_user_form">
-	<form method="post" action="/sign_up">
-		<p>
-			<label for="name">Ім'я</label>
-			<input id="name" type="text" name="user[name]" required>
-		</p>
-		<p>
-			<label for="email">Email</label>
-			<input id="email" type="text" name="user[email]" required>
-		</p>
-		<p>
-			<label for="login">Login</label>
-			<input id="login" type="text" name="user[login]" required>
-		</p>
-		<p>
-			<label for="password">Пароль</label>
-			<input id="password" type="password" name="user[password]" required>
-		</p>
-
-		<p id="panel">
-			<input type="submit" value="Зареєструватися" name="submit">
-		</p>
-	</form>
-</div>
+<form class="form form_sign_up" method="post" action="/sign_up">
+  <div class="form_block">
+    <h1>Regisztráció</h1>
+    <input class="w-input" type="text" placeholder="Felhasználónév vagy" name="user[name]" required="required"></input>
+    <input class="w-input" type="text" placeholder="Email cím" name="user[email]" required="required"></input>
+    <input class="w-input" type="text" placeholder="Login" name="user[login]" required="required"></input>
+    <input class="w-input" type="password" placeholder="Jelszó" name="user[password]" required="required"></input>
+  </div>
+  <div class="footer_form">
+    <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
+  </div>
+</form>
