@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper' 
-require 'mini_magick'
 require 'rack-flash'
 require 'picasa'
 
