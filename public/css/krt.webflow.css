@@ -269,17 +269,14 @@ p {
   margin-top: 20px; 
 }
 .post_text {
-  direction: ltr;
   font-size: 20px;
   font-weight: 400;
 }
 .user_image {
-  display: block;
-  width: 100px;
-  height: 100px;
-  margin-right: auto;
-  margin-left: auto;
-  float: none;
+  width: 120px;
+  height: 120px;
+  float: left;
+  margin-right: 20px; 
   border-radius: 100px;
   background-color: #8f8f8f;
 }
@@ -298,9 +295,12 @@ p {
 .comment_text{
   background-color: white;
   border-radius: 10px;
+  margin: 20px 20px 20px 40px;
+  padding:10px;
 }
 .comment_form {
   width: 800px;
+  padding: 10px;
 }
 .comment_login{
   margin-right: auto;
@@ -327,6 +327,9 @@ p {
   }
   .form_new_post {
     width: 700px;
+  }
+  .comment_form {
+    width: auto;
   }
 }
 @media (max-width: 767px) {
@@ -356,6 +359,13 @@ p {
   }
   .form_new_post {
     width: 500px;
+  }
+  .user_image {
+    width: 80px;
+    height: 80px;
+  }
+  .comments{
+    width: auto;
   }
 }
 @media (max-width: 479px) {
@@ -401,19 +411,5 @@ p {
   }
   .form_sign_up{
     width: 300px;
-  }
-}
-@media (max-width: 991px) {
-  .comment_form {
-    width: auto;
-  }
-}
-@media (max-width: 767px) {
-  .user_image {
-    width: 100px;
-    height: 100px;
-  }
-  .comment{
-    width: 400px;
   }
 }

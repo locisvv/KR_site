@@ -9,7 +9,15 @@
   <div class="w-container comments">
     <%if @comments.size != 0%> 
       <% @comments.each do |comment| %>
-        <div class="w-row comment">
+        <div>
+          <div class="user_image"></div>
+          <div class="comment_text">
+            <h4><%= comment.user.name %></h4>
+            <p><%= comment.text %></p>
+            <h5 class="date_text"><%= Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
+          </div>
+        </div>
+<!--         <div class="w-row comment">
           <div class="w-col w-col-2 w-hidden-small w-hidden-tiny">
             <div class="user_image"></div>
           </div>
@@ -18,7 +26,7 @@
             <p><%= comment.text %></p>
             <h5 class="date_text"><%= Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
           </div>
-        </div>
+        </div> -->
       <% end %>
     <% end %>
   </div>
