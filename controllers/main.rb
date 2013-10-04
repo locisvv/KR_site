@@ -1,6 +1,10 @@
 get '/' do
+  @post = Post.first(:order => [:created_at.desc])
+  @photo = Photo.get(@post.header_photo) 
 	@posts = Post.all(:order => [:created_at.desc], :limit => 4)
-  	erb :home
+  @events = Event.all(:order => [:created_at.desc], :limit => 4)
+  
+  erb :home, :layout => false
 end
 
 get '/picasa' do

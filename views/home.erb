@@ -1,30 +1,89 @@
-<div class="content">
-    <div class="w-row">
-      <% @posts.each do |post| %>
-        <div class="w-col w-col-3">
-          <div class="news_bloc">
-            <div class="img_news" style="background-image: url(<%= Photo.get(post.header_photo).large %>);"></div>
-            <div class="text_bloc">
-              <h4><a href="/post/<%= post.id%>"><%= post.title %></a></h4>
-              <p><%= post.subtext %></p>
-              <div class="news_data">
-                <%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+<!doctype html>
+<html>
+<head>
+  <title>KRT</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />   
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/krt.webflow.css">
+  <script type="text/javascript" src="/js/webflow.js" defer></script>
+</head>
+<body>
+  <div class="header">
     <div class="w-row">
       <div class="w-col w-col-6">
-        <div class="event">
-          <h1>Alkalmaink</h1>
-        </div>
+        <div class="company">Kajdanoi Református Templom</div>
       </div>
       <div class="w-col w-col-6">
-        <div class="event">
-          <h1>Hirdetesek</h1>
+        <div class="login_bloc">
+          <% unless session[:user] %>
+            <a class="login_link" href="/sign_in">Belépés</a>
+            <a class="login_link" href="/sign_up">Regisztráció</a>
+          <% else %>
+            <a class="login_link" href="/logout">Kilépés</a>
+            <a class="login_link" href="/post/new">New post</a>
+            <a class="login_link" href="/my_page">Az én oldalam</a>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+  <%= erb :header%>
+  <div class="w-clearfix menu">
+    <a class="menu-link" href="/" target="_self">Címlap</a>
+    <a class="menu-link" href="#" target="_self">Közélet</a>
+    <a class="menu-link" href="#" target="_self">Képgaléria</a>
+    <a class="menu-link" href="#" target="_self">Mirólunk</a>
+  </div>
+  <% if flash[:error]%>
+    <p><%= flash[:error] %></p>
+  <% end %>
+  <div class="content">
+  <div class="w-row">
+    <% @posts.each do |post| %>
+    <% photo = Photo.get(post.header_photo) %>
+      <div class="w-col w-col-3">
+        <div class="news_bloc">
+          <div class="img_news" style="background-image: url(<%=  photo ? photo.large : ""%>);"></div>
+          <div class="text_bloc">
+            <h4><a href="/post/<%= post.id%>"><%= post.title %></a></h4>
+            <p><%= post.subtext %></p>
+            <div class="news_data">
+              <%= Time.at(post.created_at).strftime("%d-%m-%Y %H:%M")%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="w-row">
+    <div class="w-col w-col-6">
+      <div class="event">
+        <h1>Alkalmaink</h1>
+        <% @events.each do |event|%>
+          <p><%= event.title %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="w-col w-col-6">
+      <div class="event">
+        <h1>Hirdetesek</h1>
+      </div>
+    </div>
+  </div>
+</div>
+   <div class="footer">
+    <div class="w-row">
+      <div class="w-col w-col-6">
+        <h3>Kajdanoi Református Templom 2013</h3>
+      </div>
+      <div class="w-col w-col-6">
+        <div class="fotter_links"><a class="footer_link" href="#">Mirólunk</a><a class="footer_link" href="#">Képgaléria</a><a class="footer_link" href="#">Közélet</a><a class="footer_link" href="#">Címlap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body> 
+</html>

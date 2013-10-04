@@ -36,7 +36,15 @@ class Post
 	belongs_to :user
 	has n, :comment
 end
+class Event
+	include DataMapper::Resource
 
+	property :id,    	Serial
+	property :title, 	String, :length => (3..40), :messages => {:length => @@errors[:length]}
+	property :subtext,	Text, :length => (3..100), :messages => {:length => @@errors[:length]}
+
+	property :created_at,   Integer, :default => Time.now.to_i
+end
 class Comment
 	include DataMapper::Resource
 

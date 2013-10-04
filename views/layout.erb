@@ -3,12 +3,14 @@
 <head>
   <title>KRT</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/webflow.css">
   <link rel="stylesheet" type="text/css" href="/css/krt.webflow.css">
   <script type="text/javascript" src="/js/webflow.js" defer></script>
+  <script type="text/javascript" src="/js/krt.js" defer></script>
+  <script type="text/javascript" src="/js/jquery-1.7.1.min.js" defer></script
+  >
 </head>
 <body>
   <div class="header">
@@ -30,12 +32,6 @@
       </div>
     </div>
   </div>
-  <div class="news">
-    <div class="news_title">
-      <div class="new_title"><strong>Táborozás a Szelidi tónál</strong>
-      </div>
-    </div>
-  </div>
   <div class="w-clearfix menu">
     <a class="menu-link" href="/" target="_self">Címlap</a>
     <a class="menu-link" href="#" target="_self">Közélet</a>
@@ -46,7 +42,7 @@
     <p><%= flash[:error] %></p>
   <% end %>
 	<%= yield %>
-   <div class="footer">
+  <div class="footer">
     <div class="w-row">
       <div class="w-col w-col-6">
         <h3>Kajdanoi Református Templom 2013</h3>

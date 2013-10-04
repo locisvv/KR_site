@@ -1,13 +1,41 @@
-<form class="form form_new_post" method="post" action="/post/save" enctype="multipart/form-data">
-  <div class="form_block">
-    <h1>Új cikk</h1>
-    <input class="w-input" type="text" placeholder="A cikk címe" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
-    <textarea class="w-input" placeholder="Rövid leírás" name="subtext" required="required"></textarea>
-    <textarea class="w-input" placeholder="A cikk" name="text" required="required"></textarea>
-    <input class="w-input" type="file" name="header_img" placeholder="Example Text" name="field" required="required"></input>
-    <input class="w-input" type="file" name="title_img" placeholder="Example Text" name="field" required="required"></input>
+<div class="container">
+  <ul class="tabs">
+      <li><a href="#tab1">Cikk</a></li>
+      <li><a href="#tab2">Alkalom</a></li>
+      <li><a href="#tab3">Fényképek</a></li>
+  </ul>
+  <div class="tab_container">
+    <div id="tab1" class="tab_content">
+      <h2>Új cikk</h2>
+      <form class="" name="post_form" method="post" action="/post/save" enctype="multipart/form-data">
+        <input class="w-input" type="text" placeholder="A cikk címe" id="title" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
+        <textarea class="w-input" placeholder="Rövid leírás" id="subtext" name="subtext" required="required"></textarea>
+        <textarea class="w-input" placeholder="A cikk" id="text" name="text" required="required"></textarea>
+        <h5>Címlap kép</h5>
+        <input class="w-input" type="file" id="header_img" name="header_img" placeholder="Example Text" name="field" required="required"></input>
+        <h5>Kis kép</h5>
+        <input class="w-input" type="file" id="title_img" name="title_img" placeholder="Example Text" name="field" required="required"></input>
+        <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."/>
+      </form>
+    </div>
+    <div id="tab2" class="tab_content">
+      <h2>Új alkalom</h2>
+      <form class="" name="post_form" method="post" action="/event/new" enctype="multipart/form-data">
+        <div class="">
+          <input class="w-input" type="text" placeholder="A cikk címe" id="title" name="event[title]" required="required" autofocus="autofocus"></input>
+          <textarea class="w-input" placeholder="Rövid leírás" id="subtext" name="event[subtext]" required="required"></textarea>
+        </div>
+        <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."/>
+      </form>
+    </div>
+    <div id="tab3" class="tab_content">
+      <h2>Fényképek</h2>
+       <form class="" name="post_form" method="post" action="/post/save" enctype="multipart/form-data">
+        <input class="w-input" type="text" placeholder="A cikk címe" id="title" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
+        <textarea class="w-input" placeholder="Rövid leírás" id="subtext" name="subtext" required="required"></textarea>
+        <input class="w-input" type="file" id="title_img" name="title_img" placeholder="Example Text" name="field" required="required"></input>
+        <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."/>
+      </form>
+    </div>
   </div>
-  <div class="footer_form">
-    <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."></input>
-  </div>
-</form>
+</div>

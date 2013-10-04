@@ -1,3 +1,4 @@
+<%= erb :header %>
 </div>	
   <div class="w-container post_block">
     <h2><%= @post.title %></h2>
@@ -17,16 +18,6 @@
             <h5 class="date_text"><%= Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
           </div>
         </div>
-<!--         <div class="w-row comment">
-          <div class="w-col w-col-2 w-hidden-small w-hidden-tiny">
-            <div class="user_image"></div>
-          </div>
-          <div class="w-col w-col-10 comment_text">
-            <h4><%= comment.user.name %></h4>
-            <p><%= comment.text %></p>
-            <h5 class="date_text"><%= Time.at(comment.created_at).strftime("%k:%M %d-%m-%Y") %></h5>
-          </div>
-        </div> -->
       <% end %>
     <% end %>
   </div>
