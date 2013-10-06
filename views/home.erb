@@ -63,7 +63,7 @@
       <div class="event">
         <h1>Alkalmaink</h1>
         <% @events.each do |event|%>
-          <p><%= event.title %></p>
+          <a href="/event/<%= event.id %>"><%= " - " + event.title + " - " + Time.at(event.date).strftime("%d-%m-%Y") %></a>
         <% end %>
       </div>
     </div>

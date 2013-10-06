@@ -6,11 +6,10 @@ end
 post '/post/save' do
 	login_required
 
-		post = Post.create(title: 		 params[:title],
-					   text: 	 	 params[:text],
-					   subtext: 	 params[:subtext],
-					   user_id: 	 session[:user].id)
-  	
+	post = Post.create(title: 	params[:title],
+				   	   text: 	params[:text],
+				       subtext: params[:subtext],
+				       user_id: session[:user].id)
   	unless post.save
   		errors = ""
   		post.errors.each do |e|

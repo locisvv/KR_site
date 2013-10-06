@@ -1,0 +1,5 @@
+<div class="w-container post_block">
+	<h2><%= @event.title + " " + Time.at(@event.date).strftime("%d-%m-%Y")%></h2>
+	<div class="line"></div>
+	<p class="post_text"><%= @event.subtext %></p>
+</div>
