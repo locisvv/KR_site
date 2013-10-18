@@ -192,9 +192,8 @@ p {
   background-color: white;
 }
 .footer {
-  position: relative;
-  left: 0; 
-  bottom: 0;
+  position: absolute;
+  left: 0;
   width: 100%;
   margin-top: 30px; 
   background-color: white;
@@ -208,7 +207,6 @@ p {
   text-decoration: none;
 }
 .event {
-  height: 400px;
   margin-right: 10px;
   margin-bottom: 15px;
   margin-left: 10px;

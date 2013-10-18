@@ -35,13 +35,14 @@ get '/post/:id' do
 		redirect back
 	end
 
-	@photo_url
+	@photo = Photo.get(@post.header_photo)
 
 	@comments = Comment.all(:post_id => params[:id])
 	@comments.each	do |comment|
 	 	user = comment.user
 	end
 
+	 
 	erb :post
 end
 

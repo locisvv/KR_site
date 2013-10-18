@@ -17,6 +17,8 @@ $(document).ready(function() {
 	
 	$("select#month").change(daysChange());
 	daysInMonth(nowDate.getFullYear(), nowDate.getMonth() + 1);
+
+	footer();
 });
 
 function daysInMonth(year, month){
