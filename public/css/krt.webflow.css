@@ -470,3 +470,8 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
   border-bottom: 1px dashed #ddd;
   font-size: 1.8em;
 }
+#add_button{
+  height: 30px;
+  width: 30px;
+  background-color: green;
+}

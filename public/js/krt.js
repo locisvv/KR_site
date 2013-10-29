@@ -1,3 +1,4 @@
+var count = 1;
 $(document).ready(function() {
 	//Действие по умолчанию
 	$(".tab_content").hide(); //Скрыть весь контент
@@ -18,7 +19,7 @@ $(document).ready(function() {
 	$("select#month").change(daysChange());
 	daysInMonth(nowDate.getFullYear(), nowDate.getMonth() + 1);
 
-	footer();
+	$("#add_input").click(add_input);
 });
 
 function daysInMonth(year, month){
@@ -33,4 +34,10 @@ function daysChange() {
 	month = $("#month option:selected").val();
 	year = $("#year option:selected").val();
 	daysInMonth(year, month);
+}
+
+function add_input () {
+	input = $("<input class=\"w-input photo_iput\" type=\"file\" id=\"title_img\" name=\"img[" + count + "]\"/> ");
+	input.insertBefore("#add_input");
+	count++;
 }

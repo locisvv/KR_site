@@ -31,7 +31,7 @@ get '/post/:id' do
 	@post = Post.first(:id => params[:id])
 
 	unless @post
-		session[:error] = "Empty post"
+		flash[:error] = @@errors[:empty_page]
 		redirect back
 	end
 

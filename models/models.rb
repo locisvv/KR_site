@@ -58,10 +58,10 @@ class Album
 
 	property :id,    	  Serial
 	property :name,  	  String
+	property :subtext,    Text
 	property :created_at, Integer, :default => Time.now.to_i
 
-	belongs_to :user
-	has n, :photo	
+	has n, :photo
 end
 class Photo
 	include DataMapper::Resource

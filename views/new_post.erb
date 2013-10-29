@@ -58,10 +58,12 @@
     </div>
     <div id="tab3" class="tab_content">
       <h2>Fényképek</h2>
-       <form class="" name="post_form" method="post" action="/post/save" enctype="multipart/form-data">
-        <input class="w-input" type="text" placeholder="A cikk címe" id="title" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
+       <form class="" name="post_form" method="post" action="/post/upload_photo" enctype="multipart/form-data">
+        <input class="w-input" type="text" placeholder="Az album cime" id="title" name="title" data-name="Name" required="required" autofocus="autofocus"></input>
         <textarea class="w-input" placeholder="Rövid leírás" id="subtext" name="subtext" required="required"></textarea>
-        <input class="w-input" type="file" id="title_img" name="title_img" placeholder="Example Text" name="field" required="required"></input>
+        <input class="w-input photo_iput" type="file" id="title_img" name="img[0]" placeholder="Example Text" name="field" required="required"></input>
+        <input id="add_input" type="button" value="+"/>
+
         <input class="w-button send_button" type="submit" value="Elküldeni" data-wait="Please wait..."/>
       </form>
     </div>

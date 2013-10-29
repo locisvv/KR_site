@@ -1,6 +1,8 @@
 get '/' do
   @post = Post.first(:order => [:created_at.desc])
-  @photo = Photo.get(@post.header_photo) 
+  
+  @photo = @post ? Photo.get(@post.header_photo) : nil
+  
 	@posts = Post.all(:order => [:created_at.desc], :limit => 4)
   @events = Event.all(:order => [:created_at.desc], :limit => 4)
   
