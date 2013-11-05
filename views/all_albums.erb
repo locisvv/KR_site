@@ -1,0 +1,21 @@
+<div class="w-container">
+  <% i = 1 %>
+  <% @albums.each do |album|%>
+    <%= i == 1 ? "<div class=\"w-row\">" : ""%>
+    <div class="w-col w-col-4">
+      <a href="<%= '/album/'+ album.id.to_s%>">
+        <div class="album" style="background-image: url(<%=album.photo[0].large%>);">
+          <div class="gallery">
+            <h4><%= album.name %></h4>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <% if i == 3 %>
+      <% i = 0 %> 
+      <%= "</div>" %>
+    <%end%>
+    <% i += 1%>  
+  <%end%>
+</div>

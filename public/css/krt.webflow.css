@@ -475,3 +475,56 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
   width: 30px;
   background-color: green;
 }
+
+.album {
+  height: 250px;
+  margin-top: 20px;
+  background-size: cover;
+}
+.gallery {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  height: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: white;
+}
+@media (max-width: 991px) {
+  h3 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 767px) {
+  h3 {
+    text-align: center;
+  }
+  .album {
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+}
+@media (max-width: 479px) {
+  h2 {
+    position: absolute;
+    top: -6px;
+    padding-bottom: 0px;
+    padding-left: 42px;
+    font-family: Bitter, serif;
+    color: #3d3d3d;
+    font-size: 25px;
+    font-style: italic;
+  }
+  h3 {
+    font-size: 15px;
+  }
+  h5 {
+    margin-top: 3px;
+    margin-bottom: 0px;
+    color: #212121;
+  }
+}
