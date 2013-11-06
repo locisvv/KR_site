@@ -37,7 +37,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:805024571
 Dir["./helpers/*.rb"].each { |file| require file }
 Dir["./models/*.rb"].each { |file| require file }
 
-DataMapper.auto_migrate!
-# DataMapper.auto_upgrade!
+# DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
 Dir["./controllers/*.rb"].each { |file| require file }
