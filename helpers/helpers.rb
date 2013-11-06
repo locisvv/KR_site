@@ -14,7 +14,7 @@ helpers do
 
 		  	@@picasa_client.photo.create(album.id,
 			    {
-			      	:binary => file.read,
+			      	:binary => file.read.force_encoding("BINARY"),
 			      	:content_type => "image/jpeg",
 			      	:title => title,
 			      	:summary => ""
