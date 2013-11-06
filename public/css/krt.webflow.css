@@ -151,6 +151,8 @@ p {
   margin: 10px;
   border: 1px none black;
   border-radius: 5px;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 .news_data {
   position: absolute;

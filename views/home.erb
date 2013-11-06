@@ -43,7 +43,7 @@
   <div class="content">
   <div class="w-row">
     <% @posts.each do |post| %>
-    <% photo = Photo.get(post.header_photo) %>
+    <% photo = Photo.get(post.title_photo) %>
       <div class="w-col w-col-3">
         <div class="news_bloc">
           <div class="img_news" style="background-image: url(<%=  photo ? photo.large : ""%>);"></div>
