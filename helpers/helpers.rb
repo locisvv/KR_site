@@ -26,7 +26,6 @@ helpers do
 			photo = photos.find { |photo| photo.title == title }
 			
 			photo_item = Photo.new( title: 		photo.title,
-									album_id: 	album.id,
 									small:  	photo.media.thumbnails[0].url,
 									medium: 	photo.media.thumbnails[1].url,
 									large:  	photo.media.thumbnails[2].url,
@@ -37,6 +36,9 @@ helpers do
 		  		photo_item.errors.each do |e|
 		  			errors += e.to_s + " "
 		  		end
+		  		print "========================"
+		  		print errors
+		  		print "========================"
 		  		flash[:error] = errors
 		  		redirect to('/post/new')
 		    end

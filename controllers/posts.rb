@@ -22,7 +22,7 @@ post '/post/save' do
 
     header_photo = upload_photo(params[:header_img], "post")
 	title_photo = upload_photo(params[:title_img], "post")
-
+	
 	post.update(title_photo:  title_photo.id, header_photo: header_photo.id)
 
 	redirect to('/')
