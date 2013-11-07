@@ -58,7 +58,8 @@ helpers do
 			redirect '/'
 		end		
 	end
+
 	def get_picasa
-		@@picasa_client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "kajdanov80502457135")	
+		@@picasa_client = Picasa::Client.new(user_id: "kajdanov@gmail.com", :password => "krt80502457135")	
 	end	
 end	
