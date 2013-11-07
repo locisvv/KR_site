@@ -32,8 +32,8 @@ use Rack::Flash
 # Для перегляду логів запросів
 DataMapper::Logger.new($stdout, :debug)
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
-# DataMapper.setup(:default, 'sqlite:db.sqlite')
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://postgres:80502457135@localhost/db')
+DataMapper.setup(:default, 'sqlite:db.sqlite')
 Dir["./helpers/*.rb"].each { |file| require file }
 Dir["./models/*.rb"].each { |file| require file }
 

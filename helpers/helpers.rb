@@ -33,6 +33,15 @@ helpers do
 									origin: 	photo.content.src)
 			photo_item.save
 
+			unless photo_item.save
+		  		errors = ""
+		  		photo_item.errors.each do |e|
+		  			errors += e.to_s + " "
+		  		end
+		  		flash[:error] = errors
+		  		redirect to('/post/new')
+		    end
+
 			return photo_item
 		else
 			false

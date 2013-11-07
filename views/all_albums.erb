@@ -4,7 +4,7 @@
     <%= i == 1 ? "<div class=\"w-row\">" : ""%>
     <div class="w-col w-col-4">
       <a href="<%= '/album/'+ album.id.to_s%>">
-        <div class="album" style="background-image: url(<%=album.photo[0].large%>);">
+        <div class="album" style="background-image: url(<%=album.photo[0] ? album.photo[0].large : ""%>);">
           <div class="gallery">
             <h4><%= album.name %></h4>
           </div>
