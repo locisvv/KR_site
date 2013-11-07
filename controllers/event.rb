@@ -1,3 +1,4 @@
+# encoding: utf-8
 get '/event/:id' do
 	@event = Event.get(params[:id])
 

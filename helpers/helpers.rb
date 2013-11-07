@@ -1,3 +1,4 @@
+# encoding: utf-8
 helpers do
 	@@picasa_client = nil
 

@@ -1,3 +1,4 @@
+# encoding: utf-8
 get '/sign_in' do
 	if session[:user]
 		flash[:error] = @@errors[:logged_in]

@@ -1,3 +1,4 @@
+# encoding: utf-8
 get '/post/new' do
 	login_required
 	erb :new_post

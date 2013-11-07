@@ -1,3 +1,4 @@
+# encoding: utf-8
 get '/' do
   @post = Post.first(:order => [:created_at.desc])
   

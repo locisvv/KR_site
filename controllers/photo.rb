@@ -1,7 +1,7 @@
+# encoding: utf-8
 post '/post/upload_photo' do
 
-	album = Album.new(name:    params[:title],
-					  subtext: params[:subtext])
+	album = Album.new(name:    params[:title], subtext: "")
 	unless album.save
 		flach[:error] = @@errors[:incorrect_value]
 		redirect '/post/new'

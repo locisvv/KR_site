@@ -1,3 +1,4 @@
+# encoding: utf-8
 get '/my_page' do
 	login?
 	erb :my_page
